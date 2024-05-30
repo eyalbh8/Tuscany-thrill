@@ -1,22 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 .App {
   text-align: center;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f9fa;
+  /* Very light grey background */
+  color: #333;
+  /* Dark grey text */
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 80px;
+  /* Height of the logo */
   pointer-events: none;
 }
 
 .App-header {
+  position: sticky;
+  top: 0;
   background-color: #fff;
-  min-height: 100vh;
+  /* White background for the header */
+  padding: 10px;
+  color: #333;
+  /* Dark grey text */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
+.menu-toggle {
+  display: none;
+  /* Hidden by default */
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
 
+.App-nav {
+  margin-top: 10px;
+}
 
+.App-nav button {
+  background: none;
+  /* No background color */
+  border: none;
+  color: #003366;
+  /* Navy blue color for text */
+  padding: 10px 20px;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: 'Playfair Display', serif;
+  /* Same font as titles */
+  font-size: 16px;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.App-nav button:hover {
+  color: #001f4d;
+  /* Darker navy on hover */
+}
+
+.App-main {
+  padding: 20px;
+}
+
+.App-section {
+  margin: 20px 0;
+  /* Reduced margin between sections */
+  padding-top: 20px;
+  /* Reduced padding-top */
+}
+
+.App-section#AboutUs {
+  padding-top: 5px;
+  /* Very small padding for About Us section */
+}
+
+.App-section h2 {
+  font-family: 'Playfair Display', serif;
+  /* Italian Roman style font for titles */
+  font-size: 28px;
+  color: #003366;
+  /* Navy blue color for titles */
+  margin-bottom: 20px;
+}
+
+.App-section p {
+  font-family: 'Playfair Display', serif;
+  /* Italian Roman style font for descriptions */
+  font-size: 16px;
+  color: #003366;
+  /* Navy blue color for descriptions */
+}
+
+.App-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.App-images img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  /* Rounded corners for images */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .App-nav {
+    display: none;
+    /* Hide nav by default on small screens */
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    /* White background for the nav */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .App-nav.open {
+    display: flex;
+    /* Show nav when menu is open */
+  }
+
+  .menu-toggle {
+    display: block;
+    /* Show menu toggle on small screens */
+  }
+}
