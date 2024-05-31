@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 .App {
   text-align: center;
@@ -46,16 +47,19 @@
 
 .App-nav {
   margin-top: 10px;
+  display: flex;
+  justify-content: center;
 }
 
-.App-nav button {
+.dropbtn {
   background: none;
   /* No background color */
   border: none;
   color: #003366;
   /* Navy blue color for text */
   padding: 10px 20px;
-  margin: 5px;
+  margin: 5px 15px;
+  /* Add spacing between buttons */
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -66,9 +70,44 @@
   cursor: pointer;
 }
 
-.App-nav button:hover {
+.dropbtn:hover {
   color: #001f4d;
   /* Darker navy on hover */
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content button {
+  color: #003366;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  background: none;
+  border: none;
+  width: 100%;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+}
+
+.dropdown-content button:hover {
+  background-color: #ddd;
 }
 
 .App-main {
@@ -97,8 +136,8 @@
 }
 
 .App-section p {
-  font-family: 'Playfair Display', serif;
-  /* Italian Roman style font for descriptions */
+  font-family: 'Open Sans', sans-serif;
+  /* Easy-to-read font for descriptions */
   font-size: 16px;
   color: #003366;
   /* Navy blue color for descriptions */
@@ -119,6 +158,185 @@
   border: 2px solid #ccc;
   border-radius: 5px;
   /* Rounded corners for images */
+}
+
+.App-address {
+  font-family: 'Open Sans', sans-serif;
+  /* Easy-to-read font for addresses */
+  font-size: 16px;
+  color: #003366;
+  /* Navy blue color for addresses */
+  margin-top: 10px;
+}
+
+.navy-link {
+  color: #003366;
+  /* Navy blue color for links */
+}
+
+.phone-link {
+  margin-top: 5px;
+  /* Space between phone number and address */
+}
+
+.book-now {
+  background: none;
+  border: none;
+  color: #003366;
+  padding: 10px 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s;
+  position: absolute;
+  /* Positioning the button to the right */
+  right: 10px;
+}
+
+.book-now:hover {
+  color: #001f4d;
+}
+
+.booking-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.booking-popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 300px;
+  /* Adjusted size for desktop */
+  position: relative;
+}
+
+.close-popup {
+  position: absolute;
+  top: 10px;
+  /* Default position for smaller screens */
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .close-popup {
+    top: 20px;
+    /* Adjusted position for larger screens */
+  }
+}
+
+.booking-popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 300px;
+  /* Adjusted size for desktop */
+  position: relative;
+}
+
+.booking-popup-content label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+.booking-popup-content input,
+.booking-popup-content select {
+  width: calc(100% - 20px);
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
+.booking-popup-content input.error,
+.booking-popup-content select.error {
+  border-color: lightcoral;
+}
+
+.error-message {
+  color: lightcoral;
+  font-size: 14px;
+}
+
+.booking-popup-content button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #003366;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.booking-popup-content button[type="submit"]:hover {
+  background-color: #001f4d;
+}
+
+.thank-you-message {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* Space between WhatsApp icon and phone number */
+  margin-top: 10px;
+  /* Space between text and contact info */
+}
+
+.icon-link {
+  text-decoration: none;
+}
+
+.whatsapp-icon {
+  width: 45px;
+  /* Set width for WhatsApp icon */
+  height: 45px;
+  /* Set height for WhatsApp icon */
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+.phone-icon,
+.email-icon {
+  font-size: 32px;
+  /* Increase the size of the emojis */
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+.phone-icon {
+  color: black;
+  /* Make the phone icon black */
 }
 
 /* Media query for smaller screens */
@@ -144,5 +362,12 @@
   .menu-toggle {
     display: block;
     /* Show menu toggle on small screens */
+  }
+
+  .App-nav button,
+  .dropdown-content button {
+    width: 100%;
+    text-align: left;
+    padding: 15px;
   }
 }
