@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
 import logo from './logo.jpg'; // Ensure your logo.jpg is in the src folder
+import ServerAPI from './ServerAPI'; // Import the ServerAPI
 
 function App() {
   const headerRef = useRef(null);
@@ -43,7 +44,7 @@ function App() {
     }));
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const errors = {};
     Object.keys(formData).forEach((key) => {
@@ -55,10 +56,23 @@ function App() {
     setFormErrors(errors);
 
     if (Object.keys(errors).length === 0) {
-      // Simulate email sending
-      setTimeout(() => {
+      try {
+        console.log('Submitting form with data:', formData);
+        await ServerAPI.post('/setup_new_client', {
+          name: formData.name,
+          business: formData.business,
+          check_in_date: formData.checkIn,
+          check_out_date: formData.checkOut,
+          email: formData.email,
+          phone_number: formData.phone,
+        });
         setFormSubmitted(true);
-      }, 500);
+        console.log('Form submitted successfully');
+      } catch (error) {
+        console.error('Error submitting form', error);
+      }
+    } else {
+      console.log('Form validation errors:', errors);
     }
   };
 
@@ -238,7 +252,7 @@ function App() {
           <p className="App-address">
             <a href="https://www.google.com/maps/search/?api=1&query=Piazza+Garibaldi%2C+1%2C+58042+Campagnatico+GR" target="_blank" rel="noopener noreferrer" className="navy-link">Piazza Garibaldi, 1, 58042 Campagnatico GR</a>
             <br />
-            <a href="tel:+393892388387" className="navy-link phone-link">+393892388387</a>
+            <a href="tel:+393892388287" className="navy-link phone-link">Borys - +393892388287</a>
           </p>
         </section>
         <section className="App-section" id="App7">
@@ -303,7 +317,6 @@ function App() {
             <a href="tel:+393892388287" className="navy-link phone-link">Borys - +393892388287</a>
           </p>
         </section>
-
         <section className="App-section" id="RistoranteIlGlicine">
           <h2>Ristorante il Glicine</h2>
           <p>Description of Ristorante il Glicine. Enjoy a fine dining experience with a wide range of delicious dishes made from fresh local ingredients.</p>
@@ -321,7 +334,6 @@ function App() {
             <a href="tel:+393892388287" className="navy-link phone-link">Borys - +393892388287</a>
           </p>
         </section>
-
         <section className="App-section" id="ContactUs">
           <h2>Feel free to contact us anytime!</h2>
           <div className="contact-info">
@@ -336,7 +348,6 @@ function App() {
             </a>
           </div>
         </section>
-
       </main>
     </div>
   );
