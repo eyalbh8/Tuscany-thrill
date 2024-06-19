@@ -1,9 +1,11 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
-import logo from './logo.jpg'; // Ensure your logo.jpg is in the src folder
+import logo from './assets/logo.jpg'; // Ensure your logo.jpg is in the src folder
 import ServerAPI from './ServerAPI'; // Import the ServerAPI
 
 function App() {
+  const images = require.context('./assets', true);
+  const imageList = images.keys().map(image => images(image));
   const headerRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [accommodationOpen, setAccommodationOpen] = useState(false);
@@ -88,9 +90,6 @@ function App() {
                 <button onClick={() => scrollToSection('VillaLaFornace')}>Villa La Fornace</button>
                 <button onClick={() => scrollToSection('VillaPieveVecchia')}>Villa Pieve Vecchia</button>
                 <button onClick={() => scrollToSection('LocandaDelGlicine')}>Locanda del Glicine boutique hotel</button>
-                <button onClick={() => scrollToSection('App7')}>App. 7</button>
-                <button onClick={() => scrollToSection('Room8')}>Room 8</button>
-                <button onClick={() => scrollToSection('App9')}>App. 9</button>
               </div>
             )}
           </div>
@@ -206,18 +205,18 @@ function App() {
       <main className="App-main">
         <section className="App-section" id="AboutUs">
           <h2>About Us</h2>
-          <p>Information about the company.</p>
+          <p>Located in the Maremma region of Tuscany, nestled between hills, nature, and archaeological sites, our company offers a variety of authentic places to sleep and dine. We aim to provide each guest with personalized attention, ensuring a relaxing and genuine vacation experience. Our accommodations and dining options reflect the true essence of Tuscan culture and hospitality. Our goal is to make every stay memorable and authentically Tuscan, giving guests the private attention and tranquility they deserve.</p>
         </section>
         <section className="App-section" id="VillaLaFornace">
           <h2>Villa La Fornace</h2>
-          <p>Description of Villa La Fornace. This is an amazing villa with great amenities and beautiful views. Perfect for a relaxing vacation. Enjoy the luxurious interiors and the serene surroundings.</p>
+          <p>This 17th-century villa offers an authentic yet pampering vacation experience, accommodating up to 10 guests in 5 double bedrooms. It features a snooker room, pool, spa, pizza oven, olive trees and a vast lawn. Guests can enjoy a private lake with kayaks, making it an ideal retreat for relaxation and fun. Located in an excellent area surrounded by a variety of activities.</p>
           <div className="App-images">
-            <img src="https://via.placeholder.com/150" alt="VillaLaFornace-1" />
-            <img src="https://via.placeholder.com/150" alt="VillaLaFornace-2" />
-            <img src="https://via.placeholder.com/150" alt="VillaLaFornace-3" />
-            <img src="https://via.placeholder.com/150" alt="VillaLaFornace-4" />
-            <img src="https://via.placeholder.com/150" alt="VillaLaFornace-5" />
-            <img src="https://via.placeholder.com/150" alt="VillaLaFornace-6" />
+            <img src={imageList[6]} alt="VillaLaFornace-1" />
+            <img src={imageList[8]} alt="VillaLaFornace-3" />
+            <img src={imageList[9]} alt="VillaLaFornace-4" />
+            <img src={imageList[10]} alt="VillaLaFornace-5" />
+            <img src={imageList[7]} alt="VillaLaFornace-2" />
+            <img src={imageList[11]} alt="VillaLaFornace-6" />
           </div>
           <p className="App-address">
             <a href="https://www.google.com/maps/search/?api=1&query=La+Fornace%2C+58042+Campagnatico+GR" target="_blank" rel="noopener noreferrer" className="navy-link">La Fornace, 58042 Campagnatico GR</a>
@@ -225,14 +224,14 @@ function App() {
         </section>
         <section className="App-section" id="VillaPieveVecchia">
           <h2>Villa Pieve Vecchia</h2>
-          <p>Description of Villa Pieve Vecchia. This villa offers modern comforts and a great location. Enjoy the spacious rooms, the private pool, and the stunning architecture. Ideal for families and groups.</p>
+          <p>This villa, originally built in 100 BC as a farmhouse, offers an authentic yet pampering design and accommodates up to 12 people. Surrounded by an archaeological site and olive trees, it features a private museum and a pool. The villa's excellent location is enhanced by a variety of nearby activities, making it a perfect vacation retreat.</p>
           <div className="App-images">
-            <img src="https://via.placeholder.com/150" alt="VillaPieveVecchia-1" />
-            <img src="https://via.placeholder.com/150" alt="VillaPieveVecchia-2" />
-            <img src="https://via.placeholder.com/150" alt="VillaPieveVecchia-3" />
-            <img src="https://via.placeholder.com/150" alt="VillaPieveVecchia-4" />
-            <img src="https://via.placeholder.com/150" alt="VillaPieveVecchia-5" />
-            <img src="https://via.placeholder.com/150" alt="VillaPieveVecchia-6" />
+            <img src={imageList[6]} alt="VillaPieveVecchia-1" />
+            <img src={imageList[6]} alt="VillaPieveVecchia-2" />
+            <img src={imageList[6]} alt="VillaPieveVecchia-3" />
+            <img src={imageList[6]} alt="VillaPieveVecchia-4" />
+            <img src={imageList[6]} alt="VillaPieveVecchia-5" />
+            <img src={imageList[6]} alt="VillaPieveVecchia-6" />
           </div>
           <p className="App-address">
             <a href="https://www.google.com/maps/search/?api=1&query=Localita%27+Pieve+Vecchia%2C+Campagnatico%2C+GR+58042" target="_blank" rel="noopener noreferrer" className="navy-link">Localita' Pieve Vecchia, Campagnatico, GR 58042</a>
@@ -240,14 +239,14 @@ function App() {
         </section>
         <section className="App-section" id="LocandaDelGlicine">
           <h2>Locanda del Glicine boutique hotel</h2>
-          <p>Description of Locanda del Glicine boutique hotel. Our hotel offers top-notch services, comfortable rooms, and excellent dining options. Perfect for business trips and leisure stays. Experience unparalleled hospitality.</p>
+          <p>This 17th-century boutique hotel, perched on a high hill above a Roman city, features a main building with 6 rooms for 2-5 guests. Additionally, there are 2 rooms nearby for up to 4 people and another room on a villa property with an archaeological site, museum, pool, and pizza oven. Located on the town's main piazza and has a restaurant, the hotel offers a unique blend of history and comfort.</p>
           <div className="App-images">
-            <img src="https://via.placeholder.com/150" alt="LocandaDelGlicine-1" />
-            <img src="https://via.placeholder.com/150" alt="LocandaDelGlicine-2" />
-            <img src="https://via.placeholder.com/150" alt="LocandaDelGlicine-3" />
-            <img src="https://via.placeholder.com/150" alt="LocandaDelGlicine-4" />
-            <img src="https://via.placeholder.com/150" alt="LocandaDelGlicine-5" />
-            <img src="https://via.placeholder.com/150" alt="LocandaDelGlicine-6" />
+            <img src={imageList[5]} alt="LocandaDelGlicine-1" />
+            <img src={imageList[4]} alt="LocandaDelGlicine-2" />
+            <img src={imageList[3]} alt="LocandaDelGlicine-3" />
+            <img src={imageList[2]} alt="LocandaDelGlicine-4" />
+            <img src={imageList[1]} alt="LocandaDelGlicine-5" />
+            <img src={imageList[0]} alt="LocandaDelGlicine-6" />
           </div>
           <p className="App-address">
             <a href="https://www.google.com/maps/search/?api=1&query=Piazza+Garibaldi%2C+1%2C+58042+Campagnatico+GR" target="_blank" rel="noopener noreferrer" className="navy-link">Piazza Garibaldi, 1, 58042 Campagnatico GR</a>
@@ -255,61 +254,16 @@ function App() {
             <a href="tel:+393892388287" className="navy-link phone-link">Borys - +393892388287</a>
           </p>
         </section>
-        <section className="App-section" id="App7">
-          <h2>App. 7</h2>
-          <p>Description of App. 7. This apartment is perfect for city living, offering modern amenities and a convenient location. Enjoy the stylish design and the vibrant neighborhood.</p>
-          <div className="App-images">
-            <img src="https://via.placeholder.com/150" alt="App7-1" />
-            <img src="https://via.placeholder.com/150" alt="App7-2" />
-            <img src="https://via.placeholder.com/150" alt="App7-3" />
-            <img src="https://via.placeholder.com/150" alt="App7-4" />
-            <img src="https://via.placeholder.com/150" alt="App7-5" />
-            <img src="https://via.placeholder.com/150" alt="App7-6" />
-          </div>
-          <p className="App-address">
-            <a href="https://www.google.com/maps/search/?api=1&query=3+Via+delle+Piaggine%2C+58042+Campagnatico+GR" target="_blank" rel="noopener noreferrer" className="navy-link">3 Via delle Piaggine, 58042 Campagnatico GR</a>
-          </p>
-        </section>
-        <section className="App-section" id="Room8">
-          <h2>Room 8</h2>
-          <p>Description of Room 8. Enjoy a comfortable stay in this well-equipped apartment. Ideal for short and long-term stays, with easy access to local attractions and public transport.</p>
-          <div className="App-images">
-            <img src="https://via.placeholder.com/150" alt="Room8-1" />
-            <img src="https://via.placeholder.com/150" alt="Room8-2" />
-            <img src="https://via.placeholder.com/150" alt="Room8-3" />
-            <img src="https://via.placeholder.com/150" alt="Room8-4" />
-            <img src="https://via.placeholder.com/150" alt="Room8-5" />
-            <img src="https://via.placeholder.com/150" alt="Room8-6" />
-          </div>
-          <p className="App-address">
-            <a href="https://www.google.com/maps/search/?api=1&query=Localit%C3%A0+Pieve+Vecchia+Strada+Provinciale+delle+Conce%2C+58042+Campagnatico+GR" target="_blank" rel="noopener noreferrer" className="navy-link">Località Pieve Vecchia Strada Provinciale delle Conce, 58042 Campagnatico GR</a>
-          </p>
-        </section>
-        <section className="App-section" id="App9">
-          <h2>App. 9</h2>
-          <p>Description of App. 9. This apartment is perfect for city living, offering modern amenities and a convenient location. Enjoy the stylish design and the vibrant neighborhood.</p>
-          <div className="App-images">
-            <img src="https://via.placeholder.com/150" alt="App9-1" />
-            <img src="https://via.placeholder.com/150" alt="App9-2" />
-            <img src="https://via.placeholder.com/150" alt="App9-3" />
-            <img src="https://via.placeholder.com/150" alt="App9-4" />
-            <img src="https://via.placeholder.com/150" alt="App9-5" />
-            <img src="https://via.placeholder.com/150" alt="App9-6" />
-          </div>
-          <p className="App-address">
-            <a href="https://www.google.com/maps/search/?api=1&query=3+Via+delle+Piaggine%2C+58042+Campagnatico+GR" target="_blank" rel="noopener noreferrer" className="navy-link">3 Via delle Piaggine, 58042 Campagnatico GR</a>
-          </p>
-        </section>
         <section className="App-section" id="OsteriaLaRimessa">
           <h2>Osteria la Rimessa</h2>
-          <p>Description of Osteria la Rimessa. A charming location offering unique experiences and wonderful services. Perfect for events and special occasions, with beautiful surroundings and facilities.</p>
+          <p>Nestled in the beautiful 17th-century town of Montorsaio, this Tuscan restaurant offers both indoor and outdoor dining with panoramic views. Specializing in authentic Tuscan meat dishes, it also hosts private events, providing a genuine culinary experience in a charming historical setting. Enjoy traditional flavors while soaking in the breathtaking scenery of the Tuscan landscape.</p>
           <div className="App-images">
-            <img src="https://via.placeholder.com/150" alt="OsteriaLaRimessa-1" />
-            <img src="https://via.placeholder.com/150" alt="OsteriaLaRimessa-2" />
-            <img src="https://via.placeholder.com/150" alt="OsteriaLaRimessa-3" />
-            <img src="https://via.placeholder.com/150" alt="OsteriaLaRimessa-4" />
-            <img src="https://via.placeholder.com/150" alt="OsteriaLaRimessa-5" />
-            <img src="https://via.placeholder.com/150" alt="OsteriaLaRimessa-6" />
+            <img src={imageList[6]} alt="OsteriaLaRimessa-1" />
+            <img src={imageList[6]} alt="OsteriaLaRimessa-2" />
+            <img src={imageList[6]} alt="OsteriaLaRimessa-3" />
+            <img src={imageList[6]} alt="OsteriaLaRimessa-4" />
+            <img src={imageList[6]} alt="OsteriaLaRimessa-5" />
+            <img src={imageList[6]} alt="OsteriaLaRimessa-6" />
           </div>
           <p className="App-address">
             <a href="https://www.google.com/maps/search/?api=1&query=Via+Aiottola%2C+2%2C+58042+Montorsaio+GR" target="_blank" rel="noopener noreferrer" className="navy-link">Via Aiottola, 2, 58042 Montorsaio GR</a>
@@ -319,14 +273,14 @@ function App() {
         </section>
         <section className="App-section" id="RistoranteIlGlicine">
           <h2>Ristorante il Glicine</h2>
-          <p>Description of Ristorante il Glicine. Enjoy a fine dining experience with a wide range of delicious dishes made from fresh local ingredients.</p>
+          <p>Located in the beautiful town of Campagnatico, this Tuscan restaurant transforms from a casual rosticceria for lunch to an elegant dining venue in the evening. Offering both indoor and outdoor seating, it also hosts private events. It’s the perfect spot for a quick, high-quality lunch and an exquisite dining experience at night. Enjoy authentic Tuscan flavors in a charming setting.</p>
           <div className="App-images">
-            <img src="https://via.placeholder.com/150" alt="RistoranteIlGlicine-1" />
-            <img src="https://via.placeholder.com/150" alt="RistoranteIlGlicine-2" />
-            <img src="https://via.placeholder.com/150" alt="RistoranteIlGlicine-3" />
-            <img src="https://via.placeholder.com/150" alt="RistoranteIlGlicine-4" />
-            <img src="https://via.placeholder.com/150" alt="RistoranteIlGlicine-5" />
-            <img src="https://via.placeholder.com/150" alt="RistoranteIlGlicine-6" />
+            <img src={imageList[6]} alt="RistoranteIlGlicine-1" />
+            <img src={imageList[6]} alt="RistoranteIlGlicine-2" />
+            <img src={imageList[6]} alt="RistoranteIlGlicine-3" />
+            <img src={imageList[6]} alt="RistoranteIlGlicine-4" />
+            <img src={imageList[6]} alt="RistoranteIlGlicine-5" />
+            <img src={imageList[6]} alt="RistoranteIlGlicine-6" />
           </div>
           <p className="App-address">
             <a href="https://www.google.com/maps/search/?api=1&query=Piazza+Garibaldi%2C+1%2C+58042+Campagnatico+GR" target="_blank" rel="noopener noreferrer" className="navy-link">Piazza Garibaldi, 1, 58042 Campagnatico GR</a>
