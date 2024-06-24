@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import './Gallery.css';
 import { FaArrowLeft, FaArrowRight, FaTimes } from 'react-icons/fa';
 
-const images = require.context('./assets', true);
-const imageList = images.keys().map(image => images(image));
+const villaLaFornacaImages = require.context('./Villa La Fornaca', true);
+const villaPieveVecchiaImages = require.context('./Villa Pieve Vecchia', true);
+const locandaDelGlicineImages = require.context('./Locanda del Glicine boutique hotel', true);
+const osteriaLaRimessaImages = require.context('./Osteria La Rimessa', true);
+const ristoranteIlGlicineImages = require.context('./Ristorante il Glicine', true);
 
 function Gallery() {
   const sections = [
-    { id: 'VillaLaFornace', title: 'Villa La Fornace' },
-    { id: 'VillaPieveVecchia', title: 'Villa Pieve Vecchia' },
-    { id: 'LocandaDelGlicine', title: 'Locanda del Glicine boutique hotel' },
-    { id: 'OsteriaLaRimessa', title: 'Osteria la Rimessa' },
-    { id: 'RistoranteIlGlicine', title: 'Ristorante il Glicine' }
+    { id: 'VillaLaFornace', title: 'Villa La Fornace', images: villaLaFornacaImages },
+    { id: 'VillaPieveVecchia', title: 'Villa Pieve Vecchia', images: villaPieveVecchiaImages },
+    { id: 'LocandaDelGlicine', title: 'Locanda del Glicine boutique hotel', images: locandaDelGlicineImages },
+    { id: 'OsteriaLaRimessa', title: 'Osteria la Rimessa', images: osteriaLaRimessaImages },
+    { id: 'RistoranteIlGlicine', title: 'Ristorante il Glicine', images: ristoranteIlGlicineImages }
   ];
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -29,22 +32,30 @@ function Gallery() {
   };
 
   const previousImage = () => {
-    setCurrentImageIndex((currentImageIndex - 1 + 20) % 20);
+    const sectionImages = sections[currentSection].images.keys();
+    setCurrentImageIndex((currentImageIndex - 1 + sectionImages.length) % sectionImages.length);
   };
 
   const nextImage = () => {
-    setCurrentImageIndex((currentImageIndex + 1) % 20);
+    const sectionImages = sections[currentSection].images.keys();
+    setCurrentImageIndex((currentImageIndex + 1) % sectionImages.length);
   };
 
-  const renderImages = (sectionIndex) => {
-    return imageList.slice(0, 20).map((image, index) => (
+  const renderImages = (sectionIndex, images) => {
+    return images.keys().map((image, index) => (
       <img
-        src={image}
+        src={images(image)}
         alt={`Gallery-${index}`}
         key={index}
         onClick={() => openLightbox(sectionIndex, index)}
       />
     ));
+  };
+
+  const getImageSrc = (sectionIndex, imageIndex) => {
+    const images = sections[sectionIndex].images;
+    const imageKeys = images.keys();
+    return images(imageKeys[imageIndex]);
   };
 
   return (
@@ -54,7 +65,7 @@ function Gallery() {
         <section className="Gallery-section" id={section.id} key={section.id}>
           <h2 className="Gallery-section-title">{section.title}</h2>
           <div className="Gallery-images">
-            {renderImages(sectionIndex)}
+            {renderImages(sectionIndex, section.images)}
           </div>
         </section>
       ))}
@@ -62,7 +73,7 @@ function Gallery() {
         <div className="lightbox">
           <FaTimes className="close" onClick={closeLightbox} />
           <FaArrowLeft className="arrow arrow-left" onClick={previousImage} />
-          <img src={imageList[currentImageIndex]} alt="Current" />
+          <img src={getImageSrc(currentSection, currentImageIndex)} alt="Current" />
           <FaArrowRight className="arrow arrow-right" onClick={nextImage} />
         </div>
       )}
