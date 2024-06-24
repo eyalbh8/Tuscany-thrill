@@ -1,0 +1,77 @@
+/* Gallery.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+.Gallery {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center;
+}
+
+.Gallery-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.Gallery-section {
+    margin: 20px 0;
+    padding-top: 20px;
+}
+
+.Gallery-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.Gallery-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.Gallery-images img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.icon-link {
+    text-decoration: none;
+}
+
+.whatsapp-icon {
+    width: 45px;
+    height: 45px;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+.phone-icon,
+.email-icon {
+    font-size: 32px;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+.phone-icon {
+    color: black;
+}
