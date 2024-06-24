@@ -65,6 +65,12 @@ function App() {
     }
   };
 
+  const handleLinkClick = () => {
+    setMenuOpen(false); // Close the menu after clicking
+    setAccommodationOpen(false); // Close the accommodation dropdown after clicking
+    setDiningOpen(false); // Close the dining dropdown after clicking
+  };
+
   return (
     <Router>
       <div className="App">
@@ -76,9 +82,9 @@ function App() {
               <button className="dropbtn" onClick={() => setAccommodationOpen(!accommodationOpen)}>Accommodation</button>
               {accommodationOpen && (
                 <div className="dropdown-content">
-                  <Link to="/#VillaLaFornace" className="dropdown-link" onClick={() => setAccommodationOpen(false)}>Villa La Fornace</Link>
-                  <Link to="/#VillaPieveVecchia" className="dropdown-link" onClick={() => setAccommodationOpen(false)}>Villa Pieve Vecchia</Link>
-                  <Link to="/#LocandaDelGlicine" className="dropdown-link" onClick={() => setAccommodationOpen(false)}>Locanda del Glicine boutique hotel</Link>
+                  <Link to="/#VillaLaFornace" className="dropdown-link" onClick={handleLinkClick}>Villa La Fornace</Link>
+                  <Link to="/#VillaPieveVecchia" className="dropdown-link" onClick={handleLinkClick}>Villa Pieve Vecchia</Link>
+                  <Link to="/#LocandaDelGlicine" className="dropdown-link" onClick={handleLinkClick}>Locanda del Glicine boutique hotel</Link>
                 </div>
               )}
             </div>
@@ -86,12 +92,12 @@ function App() {
               <button className="dropbtn" onClick={() => setDiningOpen(!diningOpen)}>Dining</button>
               {diningOpen && (
                 <div className="dropdown-content">
-                  <Link to="/#OsteriaLaRimessa" className="dropdown-link" onClick={() => setDiningOpen(false)}>Osteria la Rimessa</Link>
-                  <Link to="/#RistoranteIlGlicine" className="dropdown-link" onClick={() => setDiningOpen(false)}>Ristorante il Glicine</Link>
+                  <Link to="/#OsteriaLaRimessa" className="dropdown-link" onClick={handleLinkClick}>Osteria la Rimessa</Link>
+                  <Link to="/#RistoranteIlGlicine" className="dropdown-link" onClick={handleLinkClick}>Ristorante il Glicine</Link>
                 </div>
               )}
             </div>
-            <Link to="/gallery" className="dropbtn">Gallery</Link> {/* New Gallery button */}
+            <Link to="/gallery" className="dropbtn" onClick={handleLinkClick}>Gallery</Link> {/* New Gallery button */}
           </nav>
           <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
             ☰

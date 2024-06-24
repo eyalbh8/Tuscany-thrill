@@ -358,6 +358,8 @@
     display: none;
     /* Hide nav by default on small screens */
     flex-direction: column;
+    align-items: flex-start;
+    /* Align items to the left */
     position: absolute;
     top: 60px;
     left: 0;
@@ -378,7 +380,8 @@
   }
 
   .App-nav button,
-  .dropdown-content button {
+  .dropdown-content button,
+  .App-nav .dropdown-link {
     width: 100%;
     text-align: left;
     padding: 15px;
