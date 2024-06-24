@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Gallery.css';
+import { FaArrowLeft, FaArrowRight, FaTimes } from 'react-icons/fa';
 
 const images = require.context('./assets', true);
 const imageList = images.keys().map(image => images(image));
@@ -13,23 +14,58 @@ function Gallery() {
     { id: 'RistoranteIlGlicine', title: 'Ristorante il Glicine' }
   ];
 
-  const renderImages = () => {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentSection, setCurrentSection] = useState(0);
+
+  const openLightbox = (sectionIndex, imageIndex) => {
+    setCurrentSection(sectionIndex);
+    setCurrentImageIndex(imageIndex);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
+
+  const previousImage = () => {
+    setCurrentImageIndex((currentImageIndex - 1 + 20) % 20);
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((currentImageIndex + 1) % 20);
+  };
+
+  const renderImages = (sectionIndex) => {
     return imageList.slice(0, 20).map((image, index) => (
-      <img src={image} alt={`Gallery-${index}`} key={index} />
+      <img
+        src={image}
+        alt={`Gallery-${index}`}
+        key={index}
+        onClick={() => openLightbox(sectionIndex, index)}
+      />
     ));
   };
 
   return (
     <div className="Gallery">
       <h2 className="Gallery-title">Gallery</h2>
-      {sections.map(section => (
+      {sections.map((section, sectionIndex) => (
         <section className="Gallery-section" id={section.id} key={section.id}>
           <h2 className="Gallery-section-title">{section.title}</h2>
           <div className="Gallery-images">
-            {renderImages()}
+            {renderImages(sectionIndex)}
           </div>
         </section>
       ))}
+      {lightboxOpen && (
+        <div className="lightbox">
+          <FaTimes className="close" onClick={closeLightbox} />
+          <FaArrowLeft className="arrow arrow-left" onClick={previousImage} />
+          <img src={imageList[currentImageIndex]} alt="Current" />
+          <FaArrowRight className="arrow arrow-right" onClick={nextImage} />
+        </div>
+      )}
       <section className="App-section" id="ContactUs">
         <h2>Feel free to contact us anytime!</h2>
         <div className="contact-info">
