@@ -241,12 +241,12 @@ function App() {
           <h2>Locanda del Glicine boutique hotel</h2>
           <p>This 17th-century boutique hotel, perched on a high hill above a Roman city, features a main building with 6 rooms for 2-5 guests. Additionally, there are 2 rooms nearby for up to 4 people and another room on a villa property with an archaeological site, museum, pool, and pizza oven. Located on the town's main piazza and has a restaurant, the hotel offers a unique blend of history and comfort.</p>
           <div className="App-images">
-            <img src={imageList[5]} alt="LocandaDelGlicine-1" />
-            <img src={imageList[4]} alt="LocandaDelGlicine-2" />
-            <img src={imageList[3]} alt="LocandaDelGlicine-3" />
-            <img src={imageList[2]} alt="LocandaDelGlicine-4" />
-            <img src={imageList[1]} alt="LocandaDelGlicine-5" />
-            <img src={imageList[0]} alt="LocandaDelGlicine-6" />
+            <img src={imageList[6]} alt="LocandaDelGlicine-1" />
+            <img src={imageList[6]} alt="LocandaDelGlicine-2" />
+            <img src={imageList[6]} alt="LocandaDelGlicine-3" />
+            <img src={imageList[6]} alt="LocandaDelGlicine-4" />
+            <img src={imageList[6]} alt="LocandaDelGlicine-5" />
+            <img src={imageList[6]} alt="LocandaDelGlicine-6" />
           </div>
           <p className="App-address">
             <a href="https://www.google.com/maps/search/?api=1&query=Piazza+Garibaldi%2C+1%2C+58042+Campagnatico+GR" target="_blank" rel="noopener noreferrer" className="navy-link">Piazza Garibaldi, 1, 58042 Campagnatico GR</a>
@@ -258,12 +258,12 @@ function App() {
           <h2>Osteria la Rimessa</h2>
           <p>Nestled in the beautiful 17th-century town of Montorsaio, this Tuscan restaurant offers both indoor and outdoor dining with panoramic views. Specializing in authentic Tuscan meat dishes, it also hosts private events, providing a genuine culinary experience in a charming historical setting. Enjoy traditional flavors while soaking in the breathtaking scenery of the Tuscan landscape.</p>
           <div className="App-images">
-            <img src={imageList[6]} alt="OsteriaLaRimessa-1" />
-            <img src={imageList[6]} alt="OsteriaLaRimessa-2" />
-            <img src={imageList[6]} alt="OsteriaLaRimessa-3" />
-            <img src={imageList[6]} alt="OsteriaLaRimessa-4" />
-            <img src={imageList[6]} alt="OsteriaLaRimessa-5" />
-            <img src={imageList[6]} alt="OsteriaLaRimessa-6" />
+            <img src={imageList[0]} alt="OsteriaLaRimessa-1" />
+            <img src={imageList[2]} alt="OsteriaLaRimessa-2" />
+            <img src={imageList[1]} alt="OsteriaLaRimessa-3" />
+            <img src={imageList[5]} alt="OsteriaLaRimessa-4" />
+            <img src={imageList[4]} alt="OsteriaLaRimessa-5" />
+            <img src={imageList[3]} alt="OsteriaLaRimessa-6" />
           </div>
           <p className="App-address">
             <a href="https://www.google.com/maps/search/?api=1&query=Via+Aiottola%2C+2%2C+58042+Montorsaio+GR" target="_blank" rel="noopener noreferrer" className="navy-link">Via Aiottola, 2, 58042 Montorsaio GR</a>
