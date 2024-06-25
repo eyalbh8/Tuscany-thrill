@@ -1,29 +1,33 @@
 import React, { useState } from 'react';
 import './Gallery.css';
-import { FaArrowLeft, FaArrowRight, FaTimes } from 'react-icons/fa';
-
-const villaLaFornacaImages = require.context('./Villa La Fornaca', true);
-const villaPieveVecchiaImages = require.context('./Villa Pieve Vecchia', true);
-const locandaDelGlicineImages = require.context('./Locanda del Glicine boutique hotel', true);
-const osteriaLaRimessaImages = require.context('./Osteria La Rimessa', true);
-const ristoranteIlGlicineImages = require.context('./Ristorante il Glicine', true);
+import Lightbox from './Lightbox'; // Ensure consistent import
 
 function Gallery() {
-  const sections = [
-    { id: 'VillaLaFornace', title: 'Villa La Fornace', images: villaLaFornacaImages },
-    { id: 'VillaPieveVecchia', title: 'Villa Pieve Vecchia', images: villaPieveVecchiaImages },
-    { id: 'LocandaDelGlicine', title: 'Locanda del Glicine boutique hotel', images: locandaDelGlicineImages },
-    { id: 'OsteriaLaRimessa', title: 'Osteria la Rimessa', images: osteriaLaRimessaImages },
-    { id: 'RistoranteIlGlicine', title: 'Ristorante il Glicine', images: ristoranteIlGlicineImages }
-  ];
-
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [currentSection, setCurrentSection] = useState(0);
+  const [currentSectionImages, setCurrentSectionImages] = useState([]);
 
-  const openLightbox = (sectionIndex, imageIndex) => {
-    setCurrentSection(sectionIndex);
-    setCurrentImageIndex(imageIndex);
+  const openImagesContext = require.context('./', true, /- open\//);
+  const galleryImagesContext = require.context('./', true, /- gallery\//);
+
+  const getOpenImages = (folder) => openImagesContext.keys().filter((path) => path.includes(folder)).map(openImagesContext);
+  const getGalleryImages = (folder) => galleryImagesContext.keys().filter((path) => path.includes(folder)).map(galleryImagesContext);
+
+  const villaLaFornaceOpenImages = getOpenImages('Villa La Fornaca - open');
+  const villaPieveVecchiaOpenImages = getOpenImages('Villa Pieve Vecchia - open');
+  const locandaDelGlicineOpenImages = getOpenImages('Locanda del Glicine boutique hotel - open');
+  const osteriaLaRimessaOpenImages = getOpenImages('Osteria La Rimessa - open');
+  const ristoranteIlGlicineOpenImages = getOpenImages('Ristorante il Glicine - open');
+
+  const villaLaFornaceGalleryImages = getGalleryImages('Villa La Fornaca - gallery');
+  const villaPieveVecchiaGalleryImages = getGalleryImages('Villa Pieve Vecchia - gallery');
+  const locandaDelGlicineGalleryImages = getGalleryImages('Locanda del Glicine boutique hotel - gallery');
+  const osteriaLaRimessaGalleryImages = getGalleryImages('Osteria La Rimessa - gallery');
+  const ristoranteIlGlicineGalleryImages = getGalleryImages('Ristorante il Glicine - gallery');
+
+  const openLightbox = (openImages, galleryImages, index) => {
+    setCurrentSectionImages([...openImages, ...galleryImages]);
+    setCurrentImageIndex(index);
     setLightboxOpen(true);
   };
 
@@ -32,52 +36,67 @@ function Gallery() {
   };
 
   const previousImage = () => {
-    const sectionImages = sections[currentSection].images.keys();
-    setCurrentImageIndex((currentImageIndex - 1 + sectionImages.length) % sectionImages.length);
+    setCurrentImageIndex((currentImageIndex - 1 + currentSectionImages.length) % currentSectionImages.length);
   };
 
   const nextImage = () => {
-    const sectionImages = sections[currentSection].images.keys();
-    setCurrentImageIndex((currentImageIndex + 1) % sectionImages.length);
+    setCurrentImageIndex((currentImageIndex + 1) % currentSectionImages.length);
   };
 
-  const renderImages = (sectionIndex, images) => {
-    return images.keys().map((image, index) => (
+  const renderImages = (openImages, galleryImages) => {
+    return [...openImages, ...galleryImages].map((image, index) => (
       <img
-        src={images(image)}
-        alt={`Gallery-${index}`}
+        src={image}
+        alt={`Image-${index}`}
         key={index}
-        onClick={() => openLightbox(sectionIndex, index)}
+        onClick={() => openLightbox(openImages, galleryImages, index)}
       />
     ));
   };
 
-  const getImageSrc = (sectionIndex, imageIndex) => {
-    const images = sections[sectionIndex].images;
-    const imageKeys = images.keys();
-    return images(imageKeys[imageIndex]);
-  };
-
   return (
     <div className="Gallery">
-      <h2 className="Gallery-title">Gallery</h2>
-      {sections.map((section, sectionIndex) => (
-        <section className="Gallery-section" id={section.id} key={section.id}>
-          <h2 className="Gallery-section-title">{section.title}</h2>
-          <div className="Gallery-images">
-            {renderImages(sectionIndex, section.images)}
-          </div>
-        </section>
-      ))}
-      {lightboxOpen && (
-        <div className="lightbox">
-          <FaTimes className="close" onClick={closeLightbox} />
-          <FaArrowLeft className="arrow arrow-left" onClick={previousImage} />
-          <img src={getImageSrc(currentSection, currentImageIndex)} alt="Current" />
-          <FaArrowRight className="arrow arrow-right" onClick={nextImage} />
+      <h1>Gallery</h1>
+      <section className="Gallery-section" id="VillaLaFornace">
+        <h2>Villa La Fornace</h2>
+        <div className="Gallery-images">
+          {renderImages(villaLaFornaceOpenImages, villaLaFornaceGalleryImages)}
         </div>
+      </section>
+      <section className="Gallery-section" id="VillaPieveVecchia">
+        <h2>Villa Pieve Vecchia</h2>
+        <div className="Gallery-images">
+          {renderImages(villaPieveVecchiaOpenImages, villaPieveVecchiaGalleryImages)}
+        </div>
+      </section>
+      <section className="Gallery-section" id="LocandaDelGlicine">
+        <h2>Locanda del Glicine boutique hotel</h2>
+        <div className="Gallery-images">
+          {renderImages(locandaDelGlicineOpenImages, locandaDelGlicineGalleryImages)}
+        </div>
+      </section>
+      <section className="Gallery-section" id="OsteriaLaRimessa">
+        <h2>Osteria la Rimessa</h2>
+        <div className="Gallery-images">
+          {renderImages(osteriaLaRimessaOpenImages, osteriaLaRimessaGalleryImages)}
+        </div>
+      </section>
+      <section className="Gallery-section" id="RistoranteIlGlicine">
+        <h2>Ristorante il Glicine</h2>
+        <div className="Gallery-images">
+          {renderImages(ristoranteIlGlicineOpenImages, ristoranteIlGlicineGalleryImages)}
+        </div>
+      </section>
+      {lightboxOpen && (
+        <Lightbox
+          images={currentSectionImages}
+          currentIndex={currentImageIndex}
+          onClose={closeLightbox}
+          onPrev={previousImage}
+          onNext={nextImage}
+        />
       )}
-      <section className="App-section" id="ContactUs">
+      <section className="Gallery-section" id="ContactUs">
         <h2>Feel free to contact us anytime!</h2>
         <div className="contact-info">
           <a href="https://wa.me/393892388287?text=Ciao!%20I%20want%20to%20come%20to%20your%20restaurant%20%F0%9F%98%8A" target="_blank" rel="noopener noreferrer" className="icon-link">

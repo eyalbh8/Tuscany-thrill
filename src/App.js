@@ -3,6 +3,7 @@ import './App.css';
 import logo from './logo.jpg'; // Ensure your logo.jpg is in the src folder
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Gallery from './Gallery';
+import Lightbox from './Lightbox';// Correct the import statement
 import ScrollToTop from './ScrollToTop'; // Import the ScrollToTop component
 
 function App() {
@@ -11,6 +12,9 @@ function App() {
   const [accommodationOpen, setAccommodationOpen] = useState(false);
   const [diningOpen, setDiningOpen] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false); // State to manage lightbox visibility
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // State to manage current image in lightbox
+  const [currentSectionImages, setCurrentSectionImages] = useState([]); // State to manage current section images
   const [formData, setFormData] = useState({
     name: '',
     business: '',
@@ -22,11 +26,23 @@ function App() {
   const [formErrors, setFormErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const villaLaFornacaImages = require.context('./Villa La Fornaca', true);
-  const villaPieveVecchiaImages = require.context('./Villa Pieve Vecchia', true);
-  const locandaDelGlicineImages = require.context('./Locanda del Glicine boutique hotel', true);
-  const osteriaLaRimessaImages = require.context('./Osteria La Rimessa', true);
-  const ristoranteIlGlicineImages = require.context('./Ristorante il Glicine', true);
+  const openImagesContext = require.context('./', true, /- open\//);
+  const galleryImagesContext = require.context('./', true, /- gallery\//);
+
+  const getOpenImages = (folder) => openImagesContext.keys().filter((path) => path.includes(folder)).map(openImagesContext);
+  const getGalleryImages = (folder) => galleryImagesContext.keys().filter((path) => path.includes(folder)).map(galleryImagesContext);
+
+  const villaLaFornaceOpenImages = getOpenImages('Villa La Fornaca - open');
+  const villaPieveVecchiaOpenImages = getOpenImages('Villa Pieve Vecchia - open');
+  const locandaDelGlicineOpenImages = getOpenImages('Locanda del Glicine boutique hotel - open');
+  const osteriaLaRimessaOpenImages = getOpenImages('Osteria La Rimessa - open');
+  const ristoranteIlGlicineOpenImages = getOpenImages('Ristorante il Glicine - open');
+
+  const villaLaFornaceGalleryImages = getGalleryImages('Villa La Fornaca - gallery');
+  const villaPieveVecchiaGalleryImages = getGalleryImages('Villa Pieve Vecchia - gallery');
+  const locandaDelGlicineGalleryImages = getGalleryImages('Locanda del Glicine boutique hotel - gallery');
+  const osteriaLaRimessaGalleryImages = getGalleryImages('Osteria La Rimessa - gallery');
+  const ristoranteIlGlicineGalleryImages = getGalleryImages('Ristorante il Glicine - gallery');
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -71,9 +87,32 @@ function App() {
     }
   };
 
-  const renderImages = (images) => {
-    return images.keys().slice(0, 6).map((image, index) => (
-      <img src={images(image)} alt={`Image-${index}`} key={index} />
+  const openLightbox = (openImages, galleryImages, index) => {
+    setCurrentSectionImages([...openImages, ...galleryImages]);
+    setCurrentImageIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
+
+  const previousImage = () => {
+    setCurrentImageIndex((currentImageIndex - 1 + currentSectionImages.length) % currentSectionImages.length);
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((currentImageIndex + 1) % currentSectionImages.length);
+  };
+
+  const renderImages = (openImages, galleryImages) => {
+    return openImages.slice(0, 6).map((image, index) => (
+      <img
+        src={image}
+        alt={`Image-${index}`}
+        key={index}
+        onClick={() => openLightbox(openImages, galleryImages, index)}
+      />
     ));
   };
 
@@ -204,6 +243,15 @@ function App() {
             </div>
           </div>
         )}
+        {lightboxOpen && (
+          <Lightbox
+            images={currentSectionImages}
+            currentIndex={currentImageIndex}
+            onClose={closeLightbox}
+            onPrev={previousImage}
+            onNext={nextImage}
+          />
+        )}
         <Routes>
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/" element={
@@ -216,7 +264,7 @@ function App() {
                 <h2>Villa La Fornace</h2>
                 <p>This 17th-century villa offers an authentic yet pampering vacation experience, accommodating up to 10 guests in 5 double bedrooms. It features a snooker room, pool, spa, pizza oven, olive trees and a vast lawn. Guests can enjoy a private lake with kayaks, making it an ideal retreat for relaxation and fun. Located in an excellent area surrounded by a variety of activities.</p>
                 <div className="App-images">
-                  {renderImages(villaLaFornacaImages)}
+                  {renderImages(villaLaFornaceOpenImages, villaLaFornaceGalleryImages)}
                 </div>
                 <p className="App-address">
                   <a href="https://www.google.com/maps/search/?api=1&query=La+Fornace%2C+58042+Campagnatico+GR" target="_blank" rel="noopener noreferrer" className="navy-link">La Fornace, 58042 Campagnatico GR</a>
@@ -226,7 +274,7 @@ function App() {
                 <h2>Villa Pieve Vecchia</h2>
                 <p>This villa, originally built in 100 BC as a farmhouse, offers an authentic yet pampering design and accommodates up to 12 people. Surrounded by an archaeological site and olive trees, it features a private museum and a pool. The villa's excellent location is enhanced by a variety of nearby activities, making it a perfect vacation retreat.</p>
                 <div className="App-images">
-                  {renderImages(villaPieveVecchiaImages)}
+                  {renderImages(villaPieveVecchiaOpenImages, villaPieveVecchiaGalleryImages)}
                 </div>
                 <p className="App-address">
                   <a href="https://www.google.com/maps/search/?api=1&query=Localita%27+Pieve+Vecchia%2C+Campagnatico%2C+GR+58042" target="_blank" rel="noopener noreferrer" className="navy-link">Localita' Pieve Vecchia, Campagnatico, GR 58042</a>
@@ -236,7 +284,7 @@ function App() {
                 <h2>Locanda del Glicine boutique hotel</h2>
                 <p>This 17th-century boutique hotel, perched on a high hill above a Roman city, features a main building with 6 rooms for 2-5 guests. Additionally, there are 2 rooms nearby for up to 4 people and another room on a villa property with an archaeological site, museum, pool, and pizza oven. Located on the town's main piazza and has a restaurant, the hotel offers a unique blend of history and comfort.</p>
                 <div className="App-images">
-                  {renderImages(locandaDelGlicineImages)}
+                  {renderImages(locandaDelGlicineOpenImages, locandaDelGlicineGalleryImages)}
                 </div>
                 <p className="App-address">
                   <a href="https://www.google.com/maps/search/?api=1&query=Piazza+Garibaldi%2C+1%2C+58042+Campagnatico+GR" target="_blank" rel="noopener noreferrer" className="navy-link">Piazza Garibaldi, 1, 58042 Campagnatico GR</a>
@@ -248,7 +296,7 @@ function App() {
                 <h2>Osteria la Rimessa</h2>
                 <p>Nestled in the beautiful 17th-century town of Montorsaio, this Tuscan restaurant offers both indoor and outdoor dining with panoramic views. Specializing in authentic Tuscan meat dishes, it also hosts private events, providing a genuine culinary experience in a charming historical setting. Enjoy traditional flavors while soaking in the breathtaking scenery of the Tuscan landscape.</p>
                 <div className="App-images">
-                  {renderImages(osteriaLaRimessaImages)}
+                  {renderImages(osteriaLaRimessaOpenImages, osteriaLaRimessaGalleryImages)}
                 </div>
                 <p className="App-address">
                   <a href="https://www.google.com/maps/search/?api=1&query=Via+Aiottola%2C+2%2C+58042+Montorsaio+GR" target="_blank" rel="noopener noreferrer" className="navy-link">Via Aiottola, 2, 58042 Montorsaio GR</a>
@@ -260,7 +308,7 @@ function App() {
                 <h2>Ristorante il Glicine</h2>
                 <p>Located in the beautiful town of Campagnatico, this Tuscan restaurant transforms from a casual rosticceria for lunch to an elegant dining venue in the evening. Offering both indoor and outdoor seating, it also hosts private events. It’s the perfect spot for a quick, high-quality lunch and an exquisite dining experience at night. Enjoy authentic Tuscan flavors in a charming setting.</p>
                 <div className="App-images">
-                  {renderImages(ristoranteIlGlicineImages)}
+                  {renderImages(ristoranteIlGlicineOpenImages, ristoranteIlGlicineGalleryImages)}
                 </div>
                 <p className="App-address">
                   <a href="https://www.google.com/maps/search/?api=1&query=Piazza+Garibaldi%2C+1%2C+58042+Campagnatico+GR" target="_blank" rel="noopener noreferrer" className="navy-link">Piazza Garibaldi, 1, 58042 Campagnatico GR</a>
