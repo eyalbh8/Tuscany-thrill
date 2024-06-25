@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Gallery.css';
-import Lightbox from './Lightbox'; // Ensure consistent import
+import Lightbox from './Lightbox'; // Correct the import statement
 
 function Gallery() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -14,16 +14,16 @@ function Gallery() {
   const getGalleryImages = (folder) => galleryImagesContext.keys().filter((path) => path.includes(folder)).map(galleryImagesContext);
 
   const villaLaFornaceOpenImages = getOpenImages('Villa La Fornaca - open');
-  const villaPieveVecchiaOpenImages = getOpenImages('Villa Pieve Vecchia - open');
+  // const villaPieveVecchiaOpenImages = getOpenImages('Villa Pieve Vecchia - open');
   const locandaDelGlicineOpenImages = getOpenImages('Locanda del Glicine boutique hotel - open');
   const osteriaLaRimessaOpenImages = getOpenImages('Osteria La Rimessa - open');
-  const ristoranteIlGlicineOpenImages = getOpenImages('Ristorante il Glicine - open');
+  // const ristoranteIlGlicineOpenImages = getOpenImages('Ristorante il Glicine - open');
 
   const villaLaFornaceGalleryImages = getGalleryImages('Villa La Fornaca - gallery');
-  const villaPieveVecchiaGalleryImages = getGalleryImages('Villa Pieve Vecchia - gallery');
+  // const villaPieveVecchiaGalleryImages = getGalleryImages('Villa Pieve Vecchia - gallery');
   const locandaDelGlicineGalleryImages = getGalleryImages('Locanda del Glicine boutique hotel - gallery');
   const osteriaLaRimessaGalleryImages = getGalleryImages('Osteria La Rimessa - gallery');
-  const ristoranteIlGlicineGalleryImages = getGalleryImages('Ristorante il Glicine - gallery');
+  // const ristoranteIlGlicineGalleryImages = getGalleryImages('Ristorante il Glicine - gallery');
 
   const openLightbox = (openImages, galleryImages, index) => {
     setCurrentSectionImages([...openImages, ...galleryImages]);
@@ -63,12 +63,12 @@ function Gallery() {
           {renderImages(villaLaFornaceOpenImages, villaLaFornaceGalleryImages)}
         </div>
       </section>
-      <section className="Gallery-section" id="VillaPieveVecchia">
+      {/* <section className="Gallery-section" id="VillaPieveVecchia">
         <h2>Villa Pieve Vecchia</h2>
         <div className="Gallery-images">
           {renderImages(villaPieveVecchiaOpenImages, villaPieveVecchiaGalleryImages)}
         </div>
-      </section>
+      </section> */}
       <section className="Gallery-section" id="LocandaDelGlicine">
         <h2>Locanda del Glicine boutique hotel</h2>
         <div className="Gallery-images">
@@ -81,12 +81,12 @@ function Gallery() {
           {renderImages(osteriaLaRimessaOpenImages, osteriaLaRimessaGalleryImages)}
         </div>
       </section>
-      <section className="Gallery-section" id="RistoranteIlGlicine">
+      {/* <section className="Gallery-section" id="RistoranteIlGlicine">
         <h2>Ristorante il Glicine</h2>
         <div className="Gallery-images">
           {renderImages(ristoranteIlGlicineOpenImages, ristoranteIlGlicineGalleryImages)}
         </div>
-      </section>
+      </section> */}
       {lightboxOpen && (
         <Lightbox
           images={currentSectionImages}

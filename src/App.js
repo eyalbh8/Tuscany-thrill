@@ -3,7 +3,7 @@ import './App.css';
 import logo from './logo.jpg'; // Ensure your logo.jpg is in the src folder
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Gallery from './Gallery';
-import Lightbox from './Lightbox';// Correct the import statement
+import Lightbox from './Lightbox'; // Correct the import statement
 import ScrollToTop from './ScrollToTop'; // Import the ScrollToTop component
 
 function App() {
@@ -33,16 +33,16 @@ function App() {
   const getGalleryImages = (folder) => galleryImagesContext.keys().filter((path) => path.includes(folder)).map(galleryImagesContext);
 
   const villaLaFornaceOpenImages = getOpenImages('Villa La Fornaca - open');
-  const villaPieveVecchiaOpenImages = getOpenImages('Villa Pieve Vecchia - open');
+  // const villaPieveVecchiaOpenImages = getOpenImages('Villa Pieve Vecchia - open');
   const locandaDelGlicineOpenImages = getOpenImages('Locanda del Glicine boutique hotel - open');
   const osteriaLaRimessaOpenImages = getOpenImages('Osteria La Rimessa - open');
-  const ristoranteIlGlicineOpenImages = getOpenImages('Ristorante il Glicine - open');
+  // const ristoranteIlGlicineOpenImages = getOpenImages('Ristorante il Glicine - open');
 
   const villaLaFornaceGalleryImages = getGalleryImages('Villa La Fornaca - gallery');
-  const villaPieveVecchiaGalleryImages = getGalleryImages('Villa Pieve Vecchia - gallery');
+  // const villaPieveVecchiaGalleryImages = getGalleryImages('Villa Pieve Vecchia - gallery');
   const locandaDelGlicineGalleryImages = getGalleryImages('Locanda del Glicine boutique hotel - gallery');
   const osteriaLaRimessaGalleryImages = getGalleryImages('Osteria La Rimessa - gallery');
-  const ristoranteIlGlicineGalleryImages = getGalleryImages('Ristorante il Glicine - gallery');
+  // const ristoranteIlGlicineGalleryImages = getGalleryImages('Ristorante il Glicine - gallery');
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -128,7 +128,7 @@ function App() {
               {accommodationOpen && (
                 <div className="dropdown-content">
                   <Link to="/#VillaLaFornace" className="dropdown-link" onClick={scrollToSection.bind(this, 'VillaLaFornace')}>Villa La Fornace</Link>
-                  <Link to="/#VillaPieveVecchia" className="dropdown-link" onClick={scrollToSection.bind(this, 'VillaPieveVecchia')}>Villa Pieve Vecchia</Link>
+                  {/* <Link to="/#VillaPieveVecchia" className="dropdown-link" onClick={scrollToSection.bind(this, 'VillaPieveVecchia')}>Villa Pieve Vecchia</Link> */}
                   <Link to="/#LocandaDelGlicine" className="dropdown-link" onClick={scrollToSection.bind(this, 'LocandaDelGlicine')}>Locanda del Glicine boutique hotel</Link>
                 </div>
               )}
@@ -138,7 +138,7 @@ function App() {
               {diningOpen && (
                 <div className="dropdown-content">
                   <Link to="/#OsteriaLaRimessa" className="dropdown-link" onClick={scrollToSection.bind(this, 'OsteriaLaRimessa')}>Osteria la Rimessa</Link>
-                  <Link to="/#RistoranteIlGlicine" className="dropdown-link" onClick={scrollToSection.bind(this, 'RistoranteIlGlicine')}>Ristorante il Glicine</Link>
+                  {/* <Link to="/#RistoranteIlGlicine" className="dropdown-link" onClick={scrollToSection.bind(this, 'RistoranteIlGlicine')}>Ristorante il Glicine</Link> */}
                 </div>
               )}
             </div>
@@ -178,7 +178,7 @@ function App() {
                       >
                         <option value="">Select...</option>
                         <option value="Villa La Fornace">Villa La Fornace</option>
-                        <option value="Villa Pieve Vecchia">Villa Pieve Vecchia</option>
+                        {/* <option value="Villa Pieve Vecchia">Villa Pieve Vecchia</option> */}
                         <option value="Locanda del Glicine boutique hotel">Locanda del Glicine boutique hotel</option>
                         <option value="App. 7">App. 7</option>
                         <option value="Room 8">Room 8</option>
@@ -270,7 +270,7 @@ function App() {
                   <a href="https://www.google.com/maps/search/?api=1&query=La+Fornace%2C+58042+Campagnatico+GR" target="_blank" rel="noopener noreferrer" className="navy-link">La Fornace, 58042 Campagnatico GR</a>
                 </p>
               </section>
-              <section className="App-section" id="VillaPieveVecchia">
+              {/* <section className="App-section" id="VillaPieveVecchia">
                 <h2>Villa Pieve Vecchia</h2>
                 <p>This villa, originally built in 100 BC as a farmhouse, offers an authentic yet pampering design and accommodates up to 12 people. Surrounded by an archaeological site and olive trees, it features a private museum and a pool. The villa's excellent location is enhanced by a variety of nearby activities, making it a perfect vacation retreat.</p>
                 <div className="App-images">
@@ -279,7 +279,7 @@ function App() {
                 <p className="App-address">
                   <a href="https://www.google.com/maps/search/?api=1&query=Localita%27+Pieve+Vecchia%2C+Campagnatico%2C+GR+58042" target="_blank" rel="noopener noreferrer" className="navy-link">Localita' Pieve Vecchia, Campagnatico, GR 58042</a>
                 </p>
-              </section>
+              </section> */}
               <section className="App-section" id="LocandaDelGlicine">
                 <h2>Locanda del Glicine boutique hotel</h2>
                 <p>This 17th-century boutique hotel, perched on a high hill above a Roman city, features a main building with 6 rooms for 2-5 guests. Additionally, there are 2 rooms nearby for up to 4 people and another room on a villa property with an archaeological site, museum, pool, and pizza oven. Located on the town's main piazza and has a restaurant, the hotel offers a unique blend of history and comfort.</p>
@@ -304,7 +304,7 @@ function App() {
                   <a href="tel:+393892388287" className="navy-link phone-link">Borys - +393892388287</a>
                 </p>
               </section>
-              <section className="App-section" id="RistoranteIlGlicine">
+              {/* <section className="App-section" id="RistoranteIlGlicine">
                 <h2>Ristorante il Glicine</h2>
                 <p>Located in the beautiful town of Campagnatico, this Tuscan restaurant transforms from a casual rosticceria for lunch to an elegant dining venue in the evening. Offering both indoor and outdoor seating, it also hosts private events. It’s the perfect spot for a quick, high-quality lunch and an exquisite dining experience at night. Enjoy authentic Tuscan flavors in a charming setting.</p>
                 <div className="App-images">
@@ -315,7 +315,7 @@ function App() {
                   <br />
                   <a href="tel:+393892388287" className="navy-link phone-link">Borys - +393892388287</a>
                 </p>
-              </section>
+              </section> */}
               <section className="App-section" id="ContactUs">
                 <h2>Feel free to contact us anytime!</h2>
                 <div className="contact-info">
