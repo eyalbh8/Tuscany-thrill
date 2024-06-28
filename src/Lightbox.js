@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes for prop-type validation
 import './LightBox.css';
 
 const Lightbox = ({ images, currentIndex, onClose, onPrev, onNext }) => {
@@ -12,6 +13,15 @@ const Lightbox = ({ images, currentIndex, onClose, onPrev, onNext }) => {
       </div>
     </div>
   );
+};
+
+// Prop type validation
+Lightbox.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currentIndex: PropTypes.number.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onPrev: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired,
 };
 
 export default Lightbox;
