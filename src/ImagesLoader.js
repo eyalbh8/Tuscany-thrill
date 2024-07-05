@@ -1,16 +1,16 @@
 // ImagesLoader.js
 
 const LocandaDelGlicineGallery = [
-    "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC12.jpg",
-    "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC13.jpg",
-    "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC14.jpg",
+    "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC12.JPG",
+    "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC13.JPG",
+    "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC14.JPG",
     "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC15.jpg",
     "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC16.jpg",
     "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC17.jpg",
-    "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC18.JPG",
-    "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC19.JPG",
-    "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC20.JPG",
-    "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC21.JPG",
+    "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC18.jpg",
+    "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC19.jpg",
+    "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC20.jpg",
+    "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC21.jpg",
     "https://storage.googleapis.com/ttimages/Locanda-del-Glicine-boutique-hotel-gallery/LDC22.JPG",
 ];
 

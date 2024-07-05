@@ -13,6 +13,8 @@ import {
   LaRimmesaOpen,
   VillaLaFornacaGallery,
   VillaLaFornacaOpen,
+  // VillaPieveVecchiaGallery,
+  // VillaPieveVecchiaOpen
 } from './ImagesLoader';
 
 function App() {
@@ -35,7 +37,7 @@ function App() {
   const [formErrors, setFormErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [imagesError, setImagesError] = useState(false);
+  const [, setForceRender] = useState(false); // State to force re-render
 
   useEffect(() => {
     console.log('App component mounted');
@@ -44,8 +46,14 @@ function App() {
         return new Promise((resolve, reject) => {
           const img = new Image();
           img.src = src;
-          img.onload = () => resolve(src);
-          img.onerror = (err) => reject(err);
+          img.onload = () => {
+            console.log(`Image loaded: ${src}`);
+            resolve();
+          };
+          img.onerror = (err) => {
+            console.error(`Failed to load image: ${src}`, err);
+            reject(err);
+          };
         });
       };
 
@@ -65,7 +73,6 @@ function App() {
         setImagesLoaded(true);
       } catch (error) {
         console.error('Error loading images:', error);
-        setImagesError(true);
       }
     };
 
@@ -74,11 +81,15 @@ function App() {
 
   useEffect(() => {
     console.log('Images loaded status:', imagesLoaded);
-    if (imagesLoaded || imagesError) {
+    if (imagesLoaded) {
       const mainContent = document.querySelector('.App-main');
       console.log('Main content after images loaded:', mainContent);
+      if (!mainContent) {
+        console.error('Main content is not rendered!');
+      }
+      setForceRender((prev) => !prev); // Force re-render
     }
-  }, [imagesLoaded, imagesError]);
+  }, [imagesLoaded]);
 
   const scrollToSection = (id) => {
     console.log(`Scrolling to section: ${id}`);
@@ -302,7 +313,7 @@ function App() {
             onNext={nextImage}
           />
         )}
-        {(imagesLoaded || imagesError) && (
+        {imagesLoaded ? (
           <Routes>
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/" element={
@@ -362,6 +373,8 @@ function App() {
               </main>
             } />
           </Routes>
+        ) : (
+          <div>Loading content...</div>
         )}
       </div>
     </Router>
