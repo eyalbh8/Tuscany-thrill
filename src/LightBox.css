@@ -21,7 +21,6 @@
     font-size: 24px;
     cursor: pointer;
     z-index: 1001;
-    /* Ensure it is above other elements */
 }
 
 .lightbox-content {
@@ -33,15 +32,15 @@
 
 .lightbox-prev,
 .lightbox-next {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
     background: none;
     border: none;
     color: white;
     font-size: 48px;
-    /* Make the arrows bigger */
     cursor: pointer;
-    padding: 5px;
-    /* Make the buttons thinner */
-    z-index: 1;
+    z-index: 1001;
 }
 
 .lightbox-prev {
@@ -55,45 +54,4 @@
 .lightbox img {
     max-width: 60%;
     max-height: 60%;
-}
-
-/* Desktop version: arrows on the sides and in the middle */
-@media (min-width: 768px) {
-    .lightbox-prev {
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .lightbox-next {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-}
-
-/* Mobile version: arrows above the image */
-@media (max-width: 767px) {
-
-    .lightbox-prev,
-    .lightbox-next {
-        position: absolute;
-        top: 10px;
-        /* Position the arrows above the image */
-    }
-
-    .lightbox-prev {
-        left: 10px;
-    }
-
-    .lightbox-next {
-        right: 10px;
-    }
-
-    .lightbox img {
-        margin-top: 40px;
-        /* Ensure there is space for the arrows above */
-    }
 }
