@@ -1,21 +1,10 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import './App.css';
-import logo from './logo.jpg'; // Update to the correct path
-import Gallery from './Gallery';
-import Lightbox from './Lightbox'; // Correct the import statement
-import ScrollToTop from './ScrollToTop'; // Import the ScrollToTop component
-import ServerAPI from './ServerAPI';
-import {
-  LocandaDelGlicineGallery,
-  LocandaDelGlicineOpen,
-  LaRimmesaGallery,
-  LaRimmesaOpen,
-  VillaLaFornacaGallery,
-  VillaLaFornacaOpen,
-  // VillaPieveVecchiaGallery,
-  // VillaPieveVecchiaOpen
-} from './ImagesLoader';
+import React, { useRef, useState } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import "./App.css";
+import logo from "./logo.jpg"; // Update to the correct path
+import Gallery from "./Gallery";
+import ScrollToTop from "./ScrollToTop"; // Import the ScrollToTop component
+import ServerAPI from "./ServerAPI";
 
 function App() {
   const headerRef = useRef(null);
@@ -23,73 +12,16 @@ function App() {
   const [accommodationOpen, setAccommodationOpen] = useState(false);
   const [diningOpen, setDiningOpen] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [currentSectionImages, setCurrentSectionImages] = useState([]);
   const [formData, setFormData] = useState({
-    name: '',
-    business: '',
-    checkIn: '',
-    checkOut: '',
-    email: '',
-    phone: ''
+    name: "",
+    business: "",
+    checkIn: "",
+    checkOut: "",
+    email: "",
+    phone: "",
   });
   const [formErrors, setFormErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [, setForceRender] = useState(false); // State to force re-render
-
-  useEffect(() => {
-    console.log('App component mounted');
-    const preloadImages = async () => {
-      const load = (src) => {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.src = src;
-          img.onload = () => {
-            console.log(`Image loaded: ${src}`);
-            resolve();
-          };
-          img.onerror = (err) => {
-            console.error(`Failed to load image: ${src}`, err);
-            reject(err);
-          };
-        });
-      };
-
-      console.log('Start loading images');
-      const images = [
-        ...LocandaDelGlicineGallery,
-        ...LocandaDelGlicineOpen,
-        ...LaRimmesaGallery,
-        ...LaRimmesaOpen,
-        ...VillaLaFornacaGallery,
-        ...VillaLaFornacaOpen
-      ];
-
-      try {
-        await Promise.all(images.map(load));
-        console.log('All images loaded successfully');
-        setImagesLoaded(true);
-      } catch (error) {
-        console.error('Error loading images:', error);
-      }
-    };
-
-    preloadImages();
-  }, []);
-
-  useEffect(() => {
-    console.log('Images loaded status:', imagesLoaded);
-    if (imagesLoaded) {
-      const mainContent = document.querySelector('.App-main');
-      console.log('Main content after images loaded:', mainContent);
-      if (!mainContent) {
-        console.error('Main content is not rendered!');
-      }
-      setForceRender((prev) => !prev); // Force re-render
-    }
-  }, [imagesLoaded]);
 
   const scrollToSection = (id) => {
     console.log(`Scrolling to section: ${id}`);
@@ -104,7 +36,7 @@ function App() {
 
     window.scrollTo({
       top: offsetPosition,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
 
     setMenuOpen(false);
@@ -116,7 +48,7 @@ function App() {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -125,7 +57,7 @@ function App() {
     const errors = {};
     Object.keys(formData).forEach((key) => {
       if (!formData[key]) {
-        errors[key] = 'This field is required';
+        errors[key] = "This field is required";
       }
     });
 
@@ -133,8 +65,8 @@ function App() {
 
     if (Object.keys(errors).length === 0) {
       try {
-        console.log('Submitting form with data:', formData);
-        await ServerAPI.post('/setup_new_client', {
+        console.log("Submitting form with data:", formData);
+        await ServerAPI.post("/setup_new_client", {
           name: formData.name,
           business: formData.business,
           check_in_date: formData.checkIn,
@@ -144,40 +76,11 @@ function App() {
         });
         setFormSubmitted(true);
       } catch (error) {
-        console.error('Error submitting form', error);
+        console.error("Error submitting form", error);
       }
     } else {
-      console.log('Form validation errors:', errors);
+      console.log("Form validation errors:", errors);
     }
-  };
-
-  const openLightbox = (openImages, galleryImages, index) => {
-    setCurrentSectionImages([...openImages, ...galleryImages]);
-    setCurrentImageIndex(index);
-    setLightboxOpen(true);
-  };
-
-  const closeLightbox = () => {
-    setLightboxOpen(false);
-  };
-
-  const previousImage = () => {
-    setCurrentImageIndex((currentImageIndex - 1 + currentSectionImages.length) % currentSectionImages.length);
-  };
-
-  const nextImage = () => {
-    setCurrentImageIndex((currentImageIndex + 1) % currentSectionImages.length);
-  };
-
-  const renderImages = (openImages, galleryImages) => {
-    return openImages.slice(0, 6).map((image, index) => (
-      <img
-        src={image}
-        alt={`Image-${index}`}
-        key={index}
-        onClick={() => openLightbox(openImages, galleryImages, index)}
-      />
-    ));
   };
 
   return (
@@ -186,35 +89,86 @@ function App() {
         <ScrollToTop />
         <header className="App-header" ref={headerRef}>
           <img src={logo} className="App-logo" alt="logo" />
-          <nav className={`App-nav ${menuOpen ? 'open' : ''}`}>
+          <nav className={`App-nav ${menuOpen ? "open" : ""}`}>
             <div className="dropdown">
-              <button className="dropbtn" onClick={() => setAccommodationOpen(!accommodationOpen)}>Accommodation</button>
+              <button
+                className="dropbtn"
+                onClick={() => setAccommodationOpen(!accommodationOpen)}
+              >
+                Accommodation
+              </button>
               {accommodationOpen && (
                 <div className="dropdown-content">
-                  <Link to="/#VillaLaFornace" className="dropdown-link" onClick={scrollToSection.bind(this, 'VillaLaFornace')}>Villa La Fornace</Link>
-                  <Link to="/#LocandaDelGlicine" className="dropdown-link" onClick={scrollToSection.bind(this, 'LocandaDelGlicine')}>Locanda del Glicine boutique hotel</Link>
+                  <Link
+                    to="/#VillaLaFornace"
+                    className="dropdown-link"
+                    onClick={scrollToSection.bind(this, "VillaLaFornace")}
+                  >
+                    Villa La Fornace
+                  </Link>
+                  <Link
+                    to="/#LocandaDelGlicine"
+                    className="dropdown-link"
+                    onClick={scrollToSection.bind(this, "LocandaDelGlicine")}
+                  >
+                    Locanda del Glicine boutique hotel
+                  </Link>
+                  <Link
+                    to="/#VillaPieveVecchia"
+                    className="dropdown-link"
+                    onClick={scrollToSection.bind(this, "VillaPieveVecchia")}
+                  >
+                    Villa Pieve Vecchia
+                  </Link>
                 </div>
               )}
             </div>
             <div className="dropdown">
-              <button className="dropbtn" onClick={() => setDiningOpen(!diningOpen)}>Dining</button>
+              <button
+                className="dropbtn"
+                onClick={() => setDiningOpen(!diningOpen)}
+              >
+                Dining
+              </button>
               {diningOpen && (
                 <div className="dropdown-content">
-                  <Link to="/#OsteriaLaRimessa" className="dropdown-link" onClick={scrollToSection.bind(this, 'OsteriaLaRimessa')}>Osteria la Rimessa</Link>
+                  <Link
+                    to="/#OsteriaLaRimessa"
+                    className="dropdown-link"
+                    onClick={scrollToSection.bind(this, "OsteriaLaRimessa")}
+                  >
+                    Osteria la Rimessa
+                  </Link>
+                  <Link
+                    to="/#RistoranteIlGlicine"
+                    className="dropdown-link"
+                    onClick={scrollToSection.bind(this, "RistoranteIlGlicine")}
+                  >
+                    Ristorante del Glicine
+                  </Link>
                 </div>
               )}
             </div>
-            <Link to="/gallery" className="dropbtn" onClick={() => setMenuOpen(false)}>Gallery</Link>
           </nav>
-          <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+          <button
+            className="menu-toggle"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
             ☰
           </button>
-          <button className="book-now" onClick={() => setBookingOpen(true)}>Book Now</button>
+          <button className="book-now" onClick={() => setBookingOpen(true)}>
+            Book Now
+          </button>
         </header>
         {bookingOpen && (
           <div className="booking-popup">
             <div className="booking-popup-content">
-              <button className="close-popup" onClick={() => setBookingOpen(false)}>×</button>
+              <button
+                className="close-popup"
+                onClick={() => setBookingOpen(false)}
+              >
+                ×
+              </button>
               {!formSubmitted ? (
                 <>
                   <h2>Book Now</h2>
@@ -226,9 +180,11 @@ function App() {
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className={formErrors.name ? 'error' : ''}
+                        className={formErrors.name ? "error" : ""}
                       />
-                      {formErrors.name && <span className="error-message">{formErrors.name}</span>}
+                      {formErrors.name && (
+                        <span className="error-message">{formErrors.name}</span>
+                      )}
                     </label>
                     <label>
                       Business:
@@ -236,16 +192,33 @@ function App() {
                         name="business"
                         value={formData.business}
                         onChange={handleInputChange}
-                        className={formErrors.business ? 'error' : ''}
+                        className={formErrors.business ? "error" : ""}
                       >
                         <option value="">Select...</option>
-                        <option value="Villa La Fornace">Villa La Fornace</option>
-                        <option value="Locanda del Glicine boutique hotel">Locanda del Glicine boutique hotel</option>
+                        <option value="Villa La Fornace">
+                          Villa La Fornace
+                        </option>
+                        <option value="Locanda del Glicine boutique hotel">
+                          Locanda del Glicine boutique hotel
+                        </option>
+                        <option value="Villa Pieve Vecchia">
+                          Villa Pieve Vecchia
+                        </option>
+                        <option value="Osteria la Rimessa">
+                          Osteria la Rimessa
+                        </option>
+                        <option value="Ristorante del Glicine">
+                          Ristorante del Glicine
+                        </option>
                         <option value="App. 7">App. 7</option>
                         <option value="Room 8">Room 8</option>
                         <option value="App. 9">App. 9</option>
                       </select>
-                      {formErrors.business && <span className="error-message">{formErrors.business}</span>}
+                      {formErrors.business && (
+                        <span className="error-message">
+                          {formErrors.business}
+                        </span>
+                      )}
                     </label>
                     <label>
                       Check In:
@@ -254,9 +227,13 @@ function App() {
                         name="checkIn"
                         value={formData.checkIn}
                         onChange={handleInputChange}
-                        className={formErrors.checkIn ? 'error' : ''}
+                        className={formErrors.checkIn ? "error" : ""}
                       />
-                      {formErrors.checkIn && <span className="error-message">{formErrors.checkIn}</span>}
+                      {formErrors.checkIn && (
+                        <span className="error-message">
+                          {formErrors.checkIn}
+                        </span>
+                      )}
                     </label>
                     <label>
                       Check Out:
@@ -265,9 +242,13 @@ function App() {
                         name="checkOut"
                         value={formData.checkOut}
                         onChange={handleInputChange}
-                        className={formErrors.checkOut ? 'error' : ''}
+                        className={formErrors.checkOut ? "error" : ""}
                       />
-                      {formErrors.checkOut && <span className="error-message">{formErrors.checkOut}</span>}
+                      {formErrors.checkOut && (
+                        <span className="error-message">
+                          {formErrors.checkOut}
+                        </span>
+                      )}
                     </label>
                     <label>
                       Email:
@@ -276,9 +257,13 @@ function App() {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className={formErrors.email ? 'error' : ''}
+                        className={formErrors.email ? "error" : ""}
                       />
-                      {formErrors.email && <span className="error-message">{formErrors.email}</span>}
+                      {formErrors.email && (
+                        <span className="error-message">
+                          {formErrors.email}
+                        </span>
+                      )}
                     </label>
                     <label>
                       Phone:
@@ -287,9 +272,13 @@ function App() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className={formErrors.phone ? 'error' : ''}
+                        className={formErrors.phone ? "error" : ""}
                       />
-                      {formErrors.phone && <span className="error-message">{formErrors.phone}</span>}
+                      {formErrors.phone && (
+                        <span className="error-message">
+                          {formErrors.phone}
+                        </span>
+                      )}
                     </label>
                     <button type="submit">Send</button>
                   </form>
@@ -297,85 +286,19 @@ function App() {
               ) : (
                 <div className="thank-you-message">
                   <p>Hi {formData.name}!</p>
-                  <p>Thank you for booking with us, we will contact you soon to verify your booking.</p>
+                  <p>
+                    Thank you for booking with us, we will contact you soon to
+                    verify your booking.
+                  </p>
                   <p>See you soon 😊</p>
                 </div>
               )}
             </div>
           </div>
         )}
-        {lightboxOpen && (
-          <Lightbox
-            images={currentSectionImages}
-            currentIndex={currentImageIndex}
-            onClose={closeLightbox}
-            onPrev={previousImage}
-            onNext={nextImage}
-          />
-        )}
-        {imagesLoaded ? (
-          <Routes>
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/" element={
-              <main className="App-main">
-                <section className="App-section" id="AboutUs">
-                  <h2>About Us</h2>
-                  <p>Located in the Maremma region of Tuscany, nestled between hills, nature, and archaeological sites, our company offers a variety of authentic places to sleep and dine. We aim to provide each guest with personalized attention, ensuring a relaxing and genuine vacation experience. Our accommodations and dining options reflect the true essence of Tuscan culture and hospitality. Our goal is to make every stay memorable and authentically Tuscan, giving guests the private attention and tranquility they deserve.</p>
-                </section>
-                <section className="App-section" id="VillaLaFornace">
-                  <h2>Villa La Fornace</h2>
-                  <p>This 17th-century villa offers an authentic yet pampering vacation experience, accommodating up to 10 guests in 5 double bedrooms. It features a snooker room, pool, spa, pizza oven, olive trees and a vast lawn. Guests can enjoy a private lake with kayaks, making it an ideal retreat for relaxation and fun. Located in an excellent area surrounded by a variety of activities.</p>
-                  <div className="App-images">
-                    {renderImages(VillaLaFornacaOpen, VillaLaFornacaGallery)}
-                  </div>
-                  <p className="App-address">
-                    <a href="https://www.google.com/maps/search/?api=1&query=La+Fornace%2C+58042+Campagnatico+GR" target="_blank" rel="noopener noreferrer" className="navy-link">La Fornace, 58042 Campagnatico GR</a>
-                  </p>
-                </section>
-                <section className="App-section" id="LocandaDelGlicine">
-                  <h2>Locanda del Glicine boutique hotel</h2>
-                  <p>This 17th-century boutique hotel, perched on a high hill above a Roman city, features a main building with 6 rooms for 2-5 guests. Additionally, there are 2 rooms nearby for up to 4 people and another room on a villa property with an archaeological site, museum, pool, and pizza oven. Located on the towns main piazza and has a restaurant, the hotel offers a unique blend of history and comfort.</p>
-                  <div className="App-images">
-                    {renderImages(LocandaDelGlicineOpen, LocandaDelGlicineGallery)}
-                  </div>
-                  <p className="App-address">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Piazza+Garibaldi%2C+1%2C+58042+Campagnatico+GR" target="_blank" rel="noopener noreferrer" className="navy-link">Piazza Garibaldi, 1, 58042 Campagnatico GR</a>
-                    <br />
-                    <a href="tel:+393892388287" className="navy-link phone-link">Borys - +393892388287</a>
-                  </p>
-                </section>
-                <section className="App-section" id="OsteriaLaRimessa">
-                  <h2>Osteria la Rimessa</h2>
-                  <p>Nestled in the beautiful medieval town of Montorsaio, this Tuscan restaurant offers both indoor and outdoor dining with panoramic views. Specializing in authentic Tuscan meat dishes, it also hosts private events, providing a genuine culinary experience in a charming historical setting. Enjoy traditional flavors while soaking in the breathtaking scenery of the Tuscan landscape.</p>
-                  <div className="App-images">
-                    {renderImages(LaRimmesaOpen, LaRimmesaGallery)}
-                  </div>
-                  <p className="App-address">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Via+Aiottola%2C+2%2C+58042+Montorsaio+GR" target="_blank" rel="noopener noreferrer" className="navy-link">Via Aiottola, 2, 58042 Montorsaio GR</a>
-                    <br />
-                    <a href="tel:+393892388287" className="navy-link phone-link">Borys - +393892388287</a>
-                  </p>
-                </section>
-                <section className="App-section" id="ContactUs">
-                  <h2>Feel free to contact us anytime!</h2>
-                  <div className="contact-info">
-                    <a href="https://wa.me/393892388287?text=Ciao!%20I%20want%20to%20come%20to%20your%20restaurant%20%F0%9F%98%8A" target="_blank" rel="noopener noreferrer" className="icon-link">
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" className="whatsapp-icon" />
-                    </a>
-                    <a href="tel:+393892388287" className="icon-link">
-                      <span role="img" aria-label="Phone" className="phone-icon">📞</span>
-                    </a>
-                    <a href="mailto:TuscanyThrill@gmail.com" className="icon-link">
-                      <span role="img" aria-label="Email" className="email-icon">📧</span>
-                    </a>
-                  </div>
-                </section>
-              </main>
-            } />
-          </Routes>
-        ) : (
-          <div>Loading content...</div>
-        )}
+        <Routes>
+          <Route path="/" element={<Gallery />} />
+        </Routes>
       </div>
     </Router>
   );
