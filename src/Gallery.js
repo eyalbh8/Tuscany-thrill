@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Gallery.css";
 import Lightbox from "./Lightbox"; // Correct the import statement
+import ImageWithDebug from "./ImageWithDebug"; // Debug 404 images
 import {
   LocandaDelGlicineGallery,
   LocandaDelGlicineOpen,
@@ -59,7 +60,7 @@ function Gallery() {
   const renderImages = (openImages, galleryImages) => {
     const allImages = [...openImages, ...galleryImages];
     return allImages.map((image, index) => (
-      <img
+      <ImageWithDebug
         src={image}
         alt={`Image-${index}`}
         key={index}
