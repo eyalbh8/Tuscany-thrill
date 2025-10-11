@@ -1,4 +1,7 @@
 // ImagesLoader.js
+// Cache buster for CloudFront - change this on each deploy to force fresh image loads
+const CACHE_VERSION = "v2025-10-11-fix";
+const withCacheBust = (path) => `${path}?v=${CACHE_VERSION}`;
 
 const LocandaDelGlicineGallery = [
   "/Locanda-del-Glicine-boutique-hotel-gallery/LDC12.JPG",
@@ -12,7 +15,7 @@ const LocandaDelGlicineGallery = [
   "/Locanda-del-Glicine-boutique-hotel-gallery/LDC20.jpg",
   "/Locanda-del-Glicine-boutique-hotel-gallery/LDC21.jpg",
   "/Locanda-del-Glicine-boutique-hotel-gallery/LDC22.JPG",
-];
+].map(withCacheBust);
 
 const LocandaDelGlicineOpen = [
   "/Locanda-del-Glicine-boutique-hotel-open/LDC1.JPG",
@@ -21,7 +24,7 @@ const LocandaDelGlicineOpen = [
   "/Locanda-del-Glicine-boutique-hotel-open/LDC8.jpg",
   "/Locanda-del-Glicine-boutique-hotel-open/LDC9.jpg",
   "/Locanda-del-Glicine-boutique-hotel-open/LDC10.jpg",
-];
+].map(withCacheBust);
 
 const LaRimmesaGallery = [
   "/Osteria-La-Rimessa-gallery/La-Rimessa73.JPG",
@@ -34,7 +37,7 @@ const LaRimmesaGallery = [
   "/Osteria-La-Rimessa-gallery/La-Rimessa143.JPG",
   "/Osteria-La-Rimessa-gallery/La-Rimessa153.JPG",
   "/Osteria-La-Rimessa-gallery/La-Rimessa163.JPG",
-];
+].map(withCacheBust);
 
 const LaRimmesaOpen = [
   "/Osteria-La-Rimessa-open/La-Rimessa1.JPG",
@@ -43,7 +46,7 @@ const LaRimmesaOpen = [
   "/Osteria-La-Rimessa-open/La-Rimessa4.JPG",
   "/Osteria-La-Rimessa-open/La-Rimessa5.JPG",
   "/Osteria-La-Rimessa-open/La-Rimessa6.JPG",
-];
+].map(withCacheBust);
 
 const RistoranteIlGlicineGallery = [
   "/Ristorante-del-Glicine-gallery/IMG_0568.JPG",
@@ -55,14 +58,14 @@ const RistoranteIlGlicineGallery = [
   "/Ristorante-del-Glicine-gallery/IMG_0583.JPG",
   "/Ristorante-del-Glicine-gallery/IMG_0584.JPG",
   "/Ristorante-del-Glicine-gallery/IMG_0588.JPG",
-];
+].map(withCacheBust);
 
 const RistoranteIlGlicineOpen = [
   "/Ristorante-del-Glicine-open/IMG_0565.JPG",
   "/Ristorante-del-Glicine-open/IMG_0569.JPG",
   "/Ristorante-del-Glicine-open/IMG_0586.JPG",
   "/Ristorante-del-Glicine-open/IMG_0589.JPG",
-];
+].map(withCacheBust);
 
 const VillaLaFornacaGallery = [
   "/Villa-La-Fornaca-gallery/La-fornaca7.JPG",
@@ -79,7 +82,7 @@ const VillaLaFornacaGallery = [
   "/Villa-La-Fornaca-gallery/La-fornaca18.png",
   "/Villa-La-Fornaca-gallery/La-fornaca19.jpg",
   "/Villa-La-Fornaca-gallery/La-fornaca20.jpg",
-];
+].map(withCacheBust);
 
 const VillaLaFornacaOpen = [
   "/Villa-La-Fornaca-open/La-fornaca1.jpg",
@@ -88,7 +91,7 @@ const VillaLaFornacaOpen = [
   "/Villa-La-Fornaca-open/La-fornaca4.jpg",
   "/Villa-La-Fornaca-open/La-fornaca5.JPG",
   "/Villa-La-Fornaca-open/La-fornaca6.jpg",
-];
+].map(withCacheBust);
 
 const VillaPieveVecchiaGallery = [
   "/Villa-Pieve-Vecchia-gallery/20240721_193110.jpg",
@@ -115,12 +118,12 @@ const VillaPieveVecchiaGallery = [
   "/Villa-Pieve-Vecchia-gallery/IMG-20240810-WA0039.jpg",
   "/Villa-Pieve-Vecchia-gallery/IMG-20240810-WA0045.jpg",
   "/Villa-Pieve-Vecchia-gallery/IMG-20240810-WA0048.jpg",
-];
+].map(withCacheBust);
 
 const VillaPieveVecchiaOpen = [
   "/Villa-Pieve-Vecchia-gallery/20240721_193110.jpg",
   "/Villa-Pieve-Vecchia-gallery/IMG-20240810-WA0001.jpg",
-];
+].map(withCacheBust);
 
 export {
   LocandaDelGlicineGallery,
