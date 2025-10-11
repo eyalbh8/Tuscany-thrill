@@ -1,12 +1,12 @@
 // ImagesLoader.js
 // Cache buster for CloudFront - change this on each deploy to force fresh image loads
-const CACHE_VERSION = "v2025-10-11-fix";
+const CACHE_VERSION = "v2025-10-11-fix2";
 const withCacheBust = (path) => `${path}?v=${CACHE_VERSION}`;
 
 const LocandaDelGlicineGallery = [
-  "/Locanda-del-Glicine-boutique-hotel-gallery/LDC12.JPG",
-  "/Locanda-del-Glicine-boutique-hotel-gallery/LDC13.JPG",
-  "/Locanda-del-Glicine-boutique-hotel-gallery/LDC14.JPG",
+  "/Locanda-del-Glicine-boutique-hotel-gallery/LDC12.jpg",
+  "/Locanda-del-Glicine-boutique-hotel-gallery/LDC13.jpg",
+  "/Locanda-del-Glicine-boutique-hotel-gallery/LDC14.jpg",
   "/Locanda-del-Glicine-boutique-hotel-gallery/LDC15.jpg",
   "/Locanda-del-Glicine-boutique-hotel-gallery/LDC16.jpg",
   "/Locanda-del-Glicine-boutique-hotel-gallery/LDC17.jpg",
@@ -14,11 +14,11 @@ const LocandaDelGlicineGallery = [
   "/Locanda-del-Glicine-boutique-hotel-gallery/LDC19.jpg",
   "/Locanda-del-Glicine-boutique-hotel-gallery/LDC20.jpg",
   "/Locanda-del-Glicine-boutique-hotel-gallery/LDC21.jpg",
-  "/Locanda-del-Glicine-boutique-hotel-gallery/LDC22.JPG",
+  "/Locanda-del-Glicine-boutique-hotel-gallery/LDC22.jpg",
 ].map(withCacheBust);
 
 const LocandaDelGlicineOpen = [
-  "/Locanda-del-Glicine-boutique-hotel-open/LDC1.JPG",
+  "/Locanda-del-Glicine-boutique-hotel-open/LDC1.jpg",
   "/Locanda-del-Glicine-boutique-hotel-open/LDC2.jpg",
   "/Locanda-del-Glicine-boutique-hotel-open/LDC5.jpg",
   "/Locanda-del-Glicine-boutique-hotel-open/LDC8.jpg",
@@ -27,50 +27,50 @@ const LocandaDelGlicineOpen = [
 ].map(withCacheBust);
 
 const LaRimmesaGallery = [
-  "/Osteria-La-Rimessa-gallery/La-Rimessa73.JPG",
-  "/Osteria-La-Rimessa-gallery/La-Rimessa83.JPG",
-  "/Osteria-La-Rimessa-gallery/La-Rimessa93.JPG",
-  "/Osteria-La-Rimessa-gallery/La-Rimessa103.JPG",
-  "/Osteria-La-Rimessa-gallery/La-Rimessa113.JPG",
-  "/Osteria-La-Rimessa-gallery/La-Rimessa123.JPG",
-  "/Osteria-La-Rimessa-gallery/La-Rimessa133.JPG",
-  "/Osteria-La-Rimessa-gallery/La-Rimessa143.JPG",
-  "/Osteria-La-Rimessa-gallery/La-Rimessa153.JPG",
-  "/Osteria-La-Rimessa-gallery/La-Rimessa163.JPG",
+  "/Osteria-La-Rimessa-gallery/La-Rimessa73.jpg",
+  "/Osteria-La-Rimessa-gallery/La-Rimessa83.jpg",
+  "/Osteria-La-Rimessa-gallery/La-Rimessa93.jpg",
+  "/Osteria-La-Rimessa-gallery/La-Rimessa103.jpg",
+  "/Osteria-La-Rimessa-gallery/La-Rimessa113.jpg",
+  "/Osteria-La-Rimessa-gallery/La-Rimessa123.jpg",
+  "/Osteria-La-Rimessa-gallery/La-Rimessa133.jpg",
+  "/Osteria-La-Rimessa-gallery/La-Rimessa143.jpg",
+  "/Osteria-La-Rimessa-gallery/La-Rimessa153.jpg",
+  "/Osteria-La-Rimessa-gallery/La-Rimessa163.jpg",
 ].map(withCacheBust);
 
 const LaRimmesaOpen = [
-  "/Osteria-La-Rimessa-open/La-Rimessa1.JPG",
-  "/Osteria-La-Rimessa-open/La-Rimessa2.JPG",
-  "/Osteria-La-Rimessa-open/La-Rimessa3.JPG",
-  "/Osteria-La-Rimessa-open/La-Rimessa4.JPG",
-  "/Osteria-La-Rimessa-open/La-Rimessa5.JPG",
-  "/Osteria-La-Rimessa-open/La-Rimessa6.JPG",
+  "/Osteria-La-Rimessa-open/La-Rimessa1.jpg",
+  "/Osteria-La-Rimessa-open/La-Rimessa2.jpg",
+  "/Osteria-La-Rimessa-open/La-Rimessa3.jpg",
+  "/Osteria-La-Rimessa-open/La-Rimessa4.jpg",
+  "/Osteria-La-Rimessa-open/La-Rimessa5.jpg",
+  "/Osteria-La-Rimessa-open/La-Rimessa6.jpg",
 ].map(withCacheBust);
 
 const RistoranteIlGlicineGallery = [
-  "/Ristorante-del-Glicine-gallery/IMG_0568.JPG",
-  "/Ristorante-del-Glicine-gallery/IMG_0577.JPG",
-  "/Ristorante-del-Glicine-gallery/IMG_0578.JPG",
-  "/Ristorante-del-Glicine-gallery/IMG_0580.JPG",
-  "/Ristorante-del-Glicine-gallery/IMG_0581.JPG",
-  "/Ristorante-del-Glicine-gallery/IMG_0582.JPG",
-  "/Ristorante-del-Glicine-gallery/IMG_0583.JPG",
-  "/Ristorante-del-Glicine-gallery/IMG_0584.JPG",
-  "/Ristorante-del-Glicine-gallery/IMG_0588.JPG",
+  "/Ristorante-del-Glicine-gallery/IMG_0568.jpg",
+  "/Ristorante-del-Glicine-gallery/IMG_0577.jpg",
+  "/Ristorante-del-Glicine-gallery/IMG_0578.jpg",
+  "/Ristorante-del-Glicine-gallery/IMG_0580.jpg",
+  "/Ristorante-del-Glicine-gallery/IMG_0581.jpg",
+  "/Ristorante-del-Glicine-gallery/IMG_0582.jpg",
+  "/Ristorante-del-Glicine-gallery/IMG_0583.jpg",
+  "/Ristorante-del-Glicine-gallery/IMG_0584.jpg",
+  "/Ristorante-del-Glicine-gallery/IMG_0588.jpg",
 ].map(withCacheBust);
 
 const RistoranteIlGlicineOpen = [
-  "/Ristorante-del-Glicine-open/IMG_0565.JPG",
-  "/Ristorante-del-Glicine-open/IMG_0569.JPG",
-  "/Ristorante-del-Glicine-open/IMG_0586.JPG",
-  "/Ristorante-del-Glicine-open/IMG_0589.JPG",
+  "/Ristorante-del-Glicine-open/IMG_0565.jpg",
+  "/Ristorante-del-Glicine-open/IMG_0569.jpg",
+  "/Ristorante-del-Glicine-open/IMG_0586.jpg",
+  "/Ristorante-del-Glicine-open/IMG_0589.jpg",
 ].map(withCacheBust);
 
 const VillaLaFornacaGallery = [
-  "/Villa-La-Fornaca-gallery/La-fornaca7.JPG",
+  "/Villa-La-Fornaca-gallery/La-fornaca7.jpg",
   "/Villa-La-Fornaca-gallery/La-fornaca8.jpg",
-  "/Villa-La-Fornaca-gallery/La-fornaca9.JPG",
+  "/Villa-La-Fornaca-gallery/La-fornaca9.jpg",
   "/Villa-La-Fornaca-gallery/La-fornaca10.png",
   "/Villa-La-Fornaca-gallery/La-fornaca11.png",
   "/Villa-La-Fornaca-gallery/La-fornaca12.png",
@@ -89,7 +89,7 @@ const VillaLaFornacaOpen = [
   "/Villa-La-Fornaca-open/La-fornaca2.jpg",
   "/Villa-La-Fornaca-open/La-fornaca3.jpg",
   "/Villa-La-Fornaca-open/La-fornaca4.jpg",
-  "/Villa-La-Fornaca-open/La-fornaca5.JPG",
+  "/Villa-La-Fornaca-open/La-fornaca5.jpg",
   "/Villa-La-Fornaca-open/La-fornaca6.jpg",
 ].map(withCacheBust);
 
