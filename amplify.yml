@@ -10,15 +10,15 @@ frontend:
         - |
           set -e
           for p in \
-            "/Osteria-La-Rimessa-gallery/La-Rimessa163.jpg" \
-            "/Osteria-La-Rimessa-gallery/La-Rimessa143.jpg" \
-            "/Osteria-La-Rimessa-gallery/La-Rimessa123.jpg" \
-            "/Ristorante-del-Glicine-gallery/IMG_0568.jpg" \
-            "/Ristorante-del-Glicine-gallery/IMG_0577.jpg" \
-            "/Ristorante-del-Glicine-gallery/IMG_0588.jpg" \
-            "/Locanda-del-Glicine-boutique-hotel-open/LDC1.jpg" \
-            "/Villa-La-Fornaca-gallery/La-fornaca7.jpg" \
-            "/Villa-La-Fornaca-gallery/La-fornaca9.jpg"
+            "/images/Osteria-La-Rimessa-gallery/La-Rimessa163.jpg" \
+            "/images/ Osteria-La-Rimessa-gallery/La-Rimessa143.jpg" \
+            "/images/Osteria-La-Rimessa-gallery/La-Rimessa123.jpg" \
+            "/images/Ristorante-del-Glicine-gallery/IMG_0568.jpg" \
+            "/images/Ristorante-del-Glicine-gallery/IMG_0577.jpg" \
+            "/images/Ristorante-del-Glicine-gallery/IMG_0588.jpg" \
+            "/images/Locanda-del-Glicine-boutique-hotel-open/LDC1.jpg" \
+            "/images/Villa-La-Fornaca-gallery/La-fornaca7.jpg" \
+            "/images/Villa-La-Fornaca-gallery/La-fornaca9.jpg"
           do
             if [ ! -f "build$p" ]; then
               echo "MISSING in build: $p"; exit 1
