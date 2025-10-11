@@ -1,0 +1,33 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - npm run build
+        - |
+          set -e
+          for p in \
+            "/Osteria-La-Rimessa-gallery/La-Rimessa163.jpg" \
+            "/Osteria-La-Rimessa-gallery/La-Rimessa143.jpg" \
+            "/Osteria-La-Rimessa-gallery/La-Rimessa123.jpg" \
+            "/Ristorante-del-Glicine-gallery/IMG_0568.jpg" \
+            "/Ristorante-del-Glicine-gallery/IMG_0577.jpg" \
+            "/Ristorante-del-Glicine-gallery/IMG_0588.jpg" \
+            "/Locanda-del-Glicine-boutique-hotel-open/LDC1.jpg" \
+            "/Villa-La-Fornaca-gallery/La-fornaca7.jpg" \
+            "/Villa-La-Fornaca-gallery/La-fornaca9.jpg"
+          do
+            if [ ! -f "build$p" ]; then
+              echo "MISSING in build: $p"; exit 1
+            fi
+          done
+  artifacts:
+    baseDirectory: build
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
