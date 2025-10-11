@@ -11,7 +11,7 @@ frontend:
           set -e
           for p in \
             "/images/Osteria-La-Rimessa-gallery/La-Rimessa163.jpg" \
-            "/images/ Osteria-La-Rimessa-gallery/La-Rimessa143.jpg" \
+            "/images/Osteria-La-Rimessa-gallery/La-Rimessa143.jpg" \
             "/images/Osteria-La-Rimessa-gallery/La-Rimessa123.jpg" \
             "/images/Ristorante-del-Glicine-gallery/IMG_0568.jpg" \
             "/images/Ristorante-del-Glicine-gallery/IMG_0577.jpg" \
