@@ -65,20 +65,20 @@ const RistoranteIlGlicineOpen = [
 ];
 
 const VillaLaFornacaGallery = [
-  "/Vill-La-Fornaca-gallery/La-fornaca7.JPG",
-  "/Vill-La-Fornaca-gallery/La-fornaca8.jpg",
-  "/Vill-La-Fornaca-gallery/La-fornaca9.JPG",
-  "/Vill-La-Fornaca-gallery/La-fornaca10.png",
-  "/Vill-La-Fornaca-gallery/La-fornaca11.png",
-  "/Vill-La-Fornaca-gallery/La-fornaca12.png",
-  "/Vill-La-Fornaca-gallery/La-fornaca13.png",
-  "/Vill-La-Fornaca-gallery/La-fornaca14.png",
-  "/Vill-La-Fornaca-gallery/La-fornaca15.png",
-  "/Vill-La-Fornaca-gallery/La-fornaca16.png",
-  "/Vill-La-Fornaca-gallery/La-fornaca17.png",
-  "/Vill-La-Fornaca-gallery/La-fornaca18.png",
-  "/Vill-La-Fornaca-gallery/La-fornaca19.jpg",
-  "/Vill-La-Fornaca-gallery/La-fornaca20.jpg",
+  "/Villa-La-Fornaca-gallery/La-fornaca7.JPG",
+  "/Villa-La-Fornaca-gallery/La-fornaca8.jpg",
+  "/Villa-La-Fornaca-gallery/La-fornaca9.JPG",
+  "/Villa-La-Fornaca-gallery/La-fornaca10.png",
+  "/Villa-La-Fornaca-gallery/La-fornaca11.png",
+  "/Villa-La-Fornaca-gallery/La-fornaca12.png",
+  "/Villa-La-Fornaca-gallery/La-fornaca13.png",
+  "/Villa-La-Fornaca-gallery/La-fornaca14.png",
+  "/Villa-La-Fornaca-gallery/La-fornaca15.png",
+  "/Villa-La-Fornaca-gallery/La-fornaca16.png",
+  "/Villa-La-Fornaca-gallery/La-fornaca17.png",
+  "/Villa-La-Fornaca-gallery/La-fornaca18.png",
+  "/Villa-La-Fornaca-gallery/La-fornaca19.jpg",
+  "/Villa-La-Fornaca-gallery/La-fornaca20.jpg",
 ];
 
 const VillaLaFornacaOpen = [
