@@ -25,6 +25,21 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Tuscany Thrill</title>
+    <script>
+      (function () {
+        var script = document.createElement("script");
+        script.setAttribute(
+          "data-account-id",
+          "4b39e4ab-ef98-4e43-ab62-a007063cd0ba"
+        );
+        script.setAttribute(
+          "data-endpoint",
+          "https://688cbfd5ca2b.ngrok.app/analytics/collect"
+        );
+        script.src = "https://688cbfd5ca2b.ngrok.app/tracker.min.js";
+        document.head.appendChild(script);
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
